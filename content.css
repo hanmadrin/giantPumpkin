@@ -1,0 +1,45 @@
+#ex_console_div{
+    opacity:0.95;
+    font-size:30px;
+    top:200px;
+    right:50px;
+    padding:10px;
+    box-shadow: 0 0 1px 10px #d3cece;
+    border-radius:20px;
+    background-color:PowderBlue;
+    position:fixed;
+    z-index:9999;
+    width: 400px;
+    height:400px;
+    overflow: auto;
+}
+#ex_console_div *{
+    font-size: 22px;
+}
+#ex_console_div .inputFields{
+    width: 100%;
+    margin-top:5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+#ex_console_div .buttons{
+    margin-top:10px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid gray;
+}
+#ex_console_div .consoleAlert{
+    color: red;
+    font-size:25px;
+}

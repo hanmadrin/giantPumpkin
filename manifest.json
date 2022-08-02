@@ -1,0 +1,52 @@
+{
+  "name": "Giant Pumpkin",
+  "description": "Scraper plugin",
+  "version": "1.0",
+  "manifest_version": 2,
+  "author": "Md. Hasan Mahmud Rimon",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "cookies",
+    "*://*.facebook.com/*",
+    "*://127.0.0.1/*",
+    "*://192.168.0.101/*"
+  ],
+  "web_accessible_resources": [
+    "notify.mp3"
+  ],
+  "browser_action": {
+    "default_title": "Giant Pumpkin",
+    "default_popup": "popup/popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://192.168.0.101/*",
+        "*://127.0.0.1/*"
+      ],
+      "js": [
+        "extra.js"
+      ]
+    }
+  ]
+}
