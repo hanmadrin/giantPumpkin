@@ -6,6 +6,7 @@
 (async ()=>{
     
     const action = await getStorageSingleData('pageBypassWork');
+    // alert(action);
     if(action=="productSaving"){
         let ex_listed = await getStorageSingleData('ex_listed');
         let ex_workId = await getStorageSingleData('ex_workId');
@@ -58,6 +59,8 @@
                     var name = response.info.name;
                     await setStorageSingleData('ex_area',{'urlKey': urlKey,'radius': radius,'name': name,'status': 'selected','verified': false});
                     console.log(await getStorageSingleData('ex_area'));
+                    
+                    window.location.href="https://facebook.com";
                 }else if(response.type=='error'){
                     document.body.innerText = 'Server:'+response.message;
                 }else{
@@ -70,6 +73,7 @@
                 document.body.innerText = 'communication error';
             }
         });
+        await ex_sleep(10000);
     }
     if(action=="setIdToDisabledForUser"){
         let ex_user = await getStorageSingleData('ex_user');
@@ -104,6 +108,7 @@
     }
     if(action=="getIdForCurrentUser"){
         let ex_user = await getStorageSingleData('ex_user');
+        console.log(ex_user);
         await $.ajax({
             type: 'post',
             url: webApiUrl(),
@@ -119,6 +124,7 @@
                     var email = response.info.email;
                     var password = response.info.password;
                     await setStorageSingleData('ex_id',{'email': email,'password': password});
+                    window.location.href="https://facebook.com";
                 }else if(response.type=='actionNeeded'){
                     if(response.message=='noAvailableId'){
                         await showIdStatusClearButton();
@@ -142,6 +148,7 @@
     }
     if(action=="productListing"){
         let ex_collected = await getStorageSingleData('ex_collected');
+        console.log(ex_collected);
         let ex_workId = await getStorageSingleData('ex_workId');
         await $.ajax({
             type: 'post',
@@ -150,7 +157,7 @@
             data: {
                 action: 'productListing',
                 info: {
-                    numbers: ex_collected,
+                    numbers: ex_collected.length==0?['123456789']:ex_collected,
                     workId: ex_workId
                 }
             },

@@ -381,6 +381,7 @@ async function mainProcess(){
 async function dataCollectionProcess(){
     if(!await localStorageGotArea()){
         await getAreaFromWebStorage();
+        return;
     }
     if(await localStorageGotArea()){
         if(await isAreaVerified()){
@@ -1055,16 +1056,17 @@ async function setCurrentIdDisableWebStorage(){
     // });
 }
 async function idDisabledCheck(){
-    var url = window.location.href;
-    var checkpoint = url.includes('checkpoint');
-    var ineligible = url.includes('ineligible');
-    return checkpoint || ineligible;
+    let url = window.location.href;
+    let checkpoint = url.includes('checkpoint');
+    let ineligible = url.includes('ineligible');
+    let wrongPassword = url.includes('privacy_mutation_token');
+    return checkpoint || ineligible || wrongPassword;
 }
 async function userLoginProcess(){
     if(await isCurrentUrlFacebookHomePage()){
-        // if(!await localStorageGotId()){
+        if(!await localStorageGotId()){
             await getIdFromWebStorage();
-        // }
+        }
         if(await localStorageGotId()){
             if(await loginFormVerified()){
                 await autoLogin();
