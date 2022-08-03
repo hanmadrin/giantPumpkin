@@ -384,6 +384,8 @@ async function dataCollectionProcess(){
         if(action!='workCompleted'){
             await getAreaFromWebStorage();
             return;
+        }else{
+            await setStorageSingleData('pageBypassWork','');
         }
     }
     if(await localStorageGotArea()){

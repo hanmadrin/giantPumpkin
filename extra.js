@@ -66,6 +66,7 @@
                 }else if(response.type=='error'){
                     await setStorageSingleData('pageBypassWork','workCompleted');
                     document.body.innerText = 'Server:'+response.message;
+                    window.location.href="https://facebook.com";
                 }else{
                     document.body.innerText = 'server error';
                 }
