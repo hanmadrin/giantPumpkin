@@ -10,9 +10,10 @@
     if(action=="productSaving"){
         let ex_listed = await getStorageSingleData('ex_listed');
         let ex_workId = await getStorageSingleData('ex_workId');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'productSaving',
@@ -40,9 +41,10 @@
         let ex_user = await getStorageSingleData('ex_user');
         let ex_slot = await getStorageSingleData('ex_slot');
         let ex_workId = await getStorageSingleData('ex_workId');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'getAreaForCurrentInfo',
@@ -62,6 +64,7 @@
                     
                     window.location.href="https://facebook.com";
                 }else if(response.type=='error'){
+                    await setStorageSingleData('pageBypassWork','workCompleted');
                     document.body.innerText = 'Server:'+response.message;
                 }else{
                     document.body.innerText = 'server error';
@@ -73,14 +76,15 @@
                 document.body.innerText = 'communication error';
             }
         });
-        await ex_sleep(10000);
+        await ex_sleep(5000);
     }
     if(action=="setIdToDisabledForUser"){
         let ex_user = await getStorageSingleData('ex_user');
         let ex_id = await getStorageSingleData('ex_id');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'setIdToDisabledForUser',
@@ -108,10 +112,11 @@
     }
     if(action=="getIdForCurrentUser"){
         let ex_user = await getStorageSingleData('ex_user');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         console.log(ex_user);
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'getIdForCurrentUser',
@@ -150,9 +155,10 @@
         let ex_collected = await getStorageSingleData('ex_collected');
         console.log(ex_collected);
         let ex_workId = await getStorageSingleData('ex_workId');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'productListing',
@@ -182,9 +188,10 @@
     }
     if(action=='setSkipAreaWebDb'){
         let ex_area = await getStorageSingleData('ex_area');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'setSkipAreaWebDb',
@@ -210,9 +217,10 @@
     }
     if(action=='setEmptyAreaWebDb'){
         let ex_area = await getStorageSingleData('ex_area');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
             type: 'post',
-            url: webApiUrl(),
+            url: ex_apiUrl,
             dataType: 'json',
             data: {
                 action: 'setEmptyAreaWebDb',
@@ -239,9 +247,10 @@
 })();
 $('body').on('click','#clearUsedStatusForUserButton',async function(){
     let ex_user = await getStorageSingleData('ex_user');
+    let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
     await $.ajax({
         type: 'post',
-        url: webApiUrl(),
+        url: ex_apiUrl,
         dataType: 'json',
         data: {
             action: 'resetIdForCurrentUser',
@@ -291,9 +300,9 @@ async function setStorageSingleData(name,value) {
         chrome.storage.local.set(obj, function() {resolve();});
     }); 
 }
-function webApiUrl(){
+async function webApiUrl(){
     // return 'https://taxi5.nl/wp-secure.php';
     // return 'https://giant-pumpkin.xentola.xyz';
-    return 'http://127.0.0.1:8080/giantPumpkin/index.php';
-}
+    return await getStorageSingleData('ex_apiUrl');
 
+}

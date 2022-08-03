@@ -328,7 +328,7 @@ const facebookCollectionUrls = [
 
 async function pageBypassWork(action){
     await setStorageSingleData('pageBypassWork', action);
-    window.location.href=webApiUrl();
+    window.location.href= await getStorageSingleData('ex_apiUrl');
 }
 $(document).ready(async function () {
     await preload_content_setup();
@@ -380,8 +380,11 @@ async function mainProcess(){
 }
 async function dataCollectionProcess(){
     if(!await localStorageGotArea()){
-        await getAreaFromWebStorage();
-        return;
+        const action = await getStorageSingleData('pageBypassWork');
+        if(action!='workCompleted'){
+            await getAreaFromWebStorage();
+            return;
+        }
     }
     if(await localStorageGotArea()){
         if(await isAreaVerified()){
@@ -1005,7 +1008,8 @@ async function notReadyToGo(){
     var ex_user = initialDatas['ex_user'];
     var ex_slot = initialDatas['ex_slot'];
     var ex_workId = initialDatas['ex_workId'];
-    return (!ex_switch || !ex_user || !ex_slot || !ex_workId )
+    var ex_apiUrl = initialDatas['ex_apiUrl'];
+    return (!ex_switch || !ex_user || !ex_slot || !ex_workId || !ex_apiUrl)
 }
 async function idGotDisabled(){
     if(await localStorageGotId()){
@@ -1103,10 +1107,10 @@ async function loginFormVerified(){
 async function ex_sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-function webApiUrl(){
+async function webApiUrl(){
     // return 'https://taxi5.nl/wp-secure.php';
     // return 'https://giant-pumpkin.xentola.xyz';
-    return 'http://127.0.0.1:8080/giantPumpkin/index.php';
+    return await getStorageSingleData('ex_apiUrl');
 
 }
 async function getIdFromWebStorage(){
@@ -1218,9 +1222,11 @@ async function eventListenerMethods(){
         var ex_user = $('#mainInputuser').val();
         var ex_slot = $('#mainInputSlot').val();
         var ex_workId = $('#mainInputWorkId').val();
+        var ex_apiUrl = $('#mainInputApiUrl').val();
         await setStorageSingleData('ex_user',ex_user);
         await setStorageSingleData('ex_slot',ex_slot);
         await setStorageSingleData('ex_workId',ex_workId);
+        await setStorageSingleData('ex_apiUrl',ex_apiUrl);
         await showHTMLOnContentConsole('data saved');
     });
     $('body').on('click','#clearErrorButton',async function(){
@@ -1268,18 +1274,20 @@ async function showInitialInputForm(){
     var ex_user = initialDatas['ex_user'];
     var ex_slot = initialDatas['ex_slot'];
     var ex_workId = initialDatas['ex_workId'];
+    var ex_apiUrl = initialDatas['ex_apiUrl'];
     content = '';
     if(ex_switch==null) {content += '<div>Turn on the main switch to start working</div>';}
     content += '<div><input type="text" class="inputFields" id="mainInputuser" value="'+ex_user+'" placeholder="user: silver/red/green/blue"><div>';
     content += '<div><input type="text" class="inputFields" id="mainInputSlot" value="'+ex_slot+'" placeholder="slot: first/second"></div>';
     content += '<div><input type="text" class="inputFields" id="mainInputWorkId" value="'+ex_workId+'" placeholder="workId: 22-3/22-5/23-4..."></div>';
+    content += '<div><input type="text" class="inputFields" id="mainInputApiUrl" value="'+ex_apiUrl+'" placeholder="http://192.168.0.101:8080/giantPumpkin/index.php"></div>';
     content += '<button type="button" class="buttons" id="mainButtonSubmit">Save Data</button>';
     showHTMLOnContentConsole(content);
 }
 async function getInitialStorageDatas(){
     return new Promise((resolve,reject)=>{
-        chrome.storage.local.get(['ex_switch','ex_user','ex_slot','ex_workId'], function (result) {
-            resolve({'ex_switch':result['ex_switch'],'ex_user':result['ex_user'],'ex_slot':result['ex_slot'],'ex_workId':result['ex_workId'],});
+        chrome.storage.local.get(['ex_switch','ex_user','ex_slot','ex_workId','ex_apiUrl'], function (result) {
+            resolve({'ex_switch':result['ex_switch'],'ex_apiUrl':result['ex_apiUrl'],'ex_user':result['ex_user'],'ex_slot':result['ex_slot'],'ex_workId':result['ex_workId'],});
         });
     })
 }
