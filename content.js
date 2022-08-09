@@ -1068,7 +1068,8 @@ async function idDisabledCheck(){
     let checkpoint = url.includes('checkpoint');
     let ineligible = url.includes('ineligible');
     let wrongPassword = url.includes('privacy_mutation_token');
-    return checkpoint || ineligible || wrongPassword;
+    let confirmemail = url.includes('confirmemail');
+    return checkpoint || ineligible || wrongPassword ||confirmemail;
 }
 async function userLoginProcess(){
     if(await isCurrentUrlFacebookHomePage()){
