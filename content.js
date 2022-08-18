@@ -521,30 +521,30 @@ function classesToSelector(classes){
     return selector;
 }
 async function scrapingLevelZero(index,number){
-    let holderParentClasses = 'rpm2j7zs k7i0oixp gvuykj2m j83agx80 cbu4d94t ni8dbmo4 du4w35lb q5bimw55 ofs802cu pohlnb88 dkue75c7 mb9wzai9 d8ncny3e g5gj957u tgvbjcpo l56l04vs r57mb794 kh7kg01d eg9m0zos c3g1iek1 l9j0dhe7 k4xni2cv buofh1pr do00u71z ofv0k9yr k4urcfbm spskuzq3';
+    let holderParentClasses = 'r7ybg2qv qbc87b33 jk4gexc9 alzwoclg cqf1kptm lq84ybu9 g4tp4svg ly56v2vv h67akvdo ir1gxh3s sqler345 by1hb0a5 thmcm15y i15ihif8 dnr7xe2t id4k59z1 jfw19y2w b95sz57d mm05nxu8 izce65as om3e55n1 qbfhvn0q cgu29s5g nuz1ool1 q6feio67 mfclru0v l4a8l1zh';
     let holderParent = document.querySelector(`[class="${holderParentClasses}"]`);
-    let holderClasses = 'j83agx80 cbu4d94t buofh1pr l9j0dhe7';
+    let holderClasses = 'alzwoclg cqf1kptm cgu29s5g om3e55n1';
     let holder = holderParent.querySelector(`[class="${holderClasses}"]`);
     //year vehicle
-    let yearNameClasses = 'd2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j fe6kdd0r mau55g9w c8b282yb keod5gw0 nxhoafnm aigsh9s9 qg6bub1s iv3no6db o0t2es00 f530mmz5 hnhda86s oo9gr5id';
+    let yearNameClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas thx2cq4v hxfwr5lz qntmu8s7 tq4zoyjo o48pnaf2 pbevjfx6';
     let year = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.match(/^\d{4}/).toString().replace(/,/g, "");
     let name = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.replace(/^\d{4}/, '').trim().replace(/,/g, "");
     //price
-    let priceClasses = 'd2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j fe6kdd0r mau55g9w c8b282yb keod5gw0 nxhoafnm aigsh9s9 d3f4x2em mdeji52x a5q79mjw g1cxx5fr lrazzd5p oo9gr5id';
+    let priceClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas m2nijcs8 szxhu1pg hpj0pwwo sggt6rq5 innypi6y pbevjfx6';
     let price = holder.querySelector(`${classesToSelector(priceClasses)}`).innerText.match(/\d+/g).join('');
     //state city time
-    let stateCityTimeClasses = 'd2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh e9vueds3 j5wam9gi b1v8xokw m9osqain';
+    let stateCityTimeClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas f5mw3jnl szxhu1pg nfkogyam kkmhubc1 tes86rjd rtxb060y';
     let stateCityTime = holder.querySelector(`${classesToSelector(stateCityTimeClasses)}`).innerText;
     let state = stateCityTime.split('in ')[1].match(/[A-Z]{2}/).toString().trim().replace(/,/g, "");
     let city = stateCityTime.split(' in ')[1].replace(/, [A-Z]{2}/, '').trim().replace(/,/g, "");
     let time = stateCityTime.split(' in ')[0].replace('VehiclesListed', '').replace('Listed', '').replace('ago', '').trim().replace(/,/g, "");
     //mileage
-    let mileageHolderClasses = 'hpfvmrgz g5gj957u buofh1pr rj1gh0hx o8rfisnq';
-    let mileageClasses = 'd2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j fe6kdd0r mau55g9w c8b282yb keod5gw0 nxhoafnm aigsh9s9 d3f4x2em iv3no6db jq4qci2q a3bd9o3v b1v8xokw oo9gr5id';
+    let mileageHolderClasses = 'aeinzg81 i15ihif8 cgu29s5g jg3vgc78 gb2oqlaf';
+    let mileageClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas m2nijcs8 hxfwr5lz k1z55t6l oog5qr5w tes86rjd pbevjfx6';
     let mileage = holder.querySelector(`${classesToSelector(mileageHolderClasses)}>${classesToSelector(mileageClasses)}`).innerText.match(/\d+/g).join('').replace(/,/g, "");
     //seller
-    let sellerHolderClasses = 'oajrlxb2 g5ia77u1 qu0x051f esr5mh6w e9989ue4 r7d6kgcz rq0escxv nhd2j8a9 nc684nl6 p7hjln8o kvgmc6g5 cxmmr5t8 oygrvhab hcukyx3x jb3vyjys rz4wbd8a qt6c0cv9 a8nywdso i1ao9s8h esuyzwwr f1sip0of lzcic4wl gpro0wi8 oo9gr5id lrazzd5p';
-    let sellerClasses = 'd2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh jq4qci2q a3bd9o3v lrazzd5p oo9gr5id';
+    let sellerHolderClasses = 'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn bdao358l fsf7x5fv rse6dlih s5oniofx m8h3af8h l7ghb35v kjdc1dyq kmwttqpk srn514ro oxkhqvkx rl78xhln nch0832m cr00lzj9 rn8ck1ys s3jn8y49 icdlwmnq cxfqmxzd pbevjfx6 innypi6y';
+    let sellerClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw k1z55t6l oog5qr5w innypi6y pbevjfx6';
     let seller = holder.querySelector(`${classesToSelector(sellerHolderClasses)}>${classesToSelector(sellerClasses)}`).innerText.trim().replace(/,/g, "");
     console.log([year,name,price,state,city,time,mileage,seller].join('|'));
     return {
@@ -710,7 +710,7 @@ async function collectDataFromPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         for(i=0;i<items.length;i++){
             const dealerShip = items[i].innerText.search('Dealership');
-            const state = items[i].querySelector('.aahdfvyu.fsotbgu8:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
+            const state = items[i].querySelector('.i0rxk2l3.d2v05h0u:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
             if(dealerShip==-1){
                 if(isSpecifiedState(state)){
                     numbers.push(items[i].getAttribute('href').split('/')[3]);
@@ -763,7 +763,8 @@ async function scrollPage(){
     await ex_sleep(5000);
     var attemptCount = 0;
     let totalTry = 0;
-    while(listingEndingDefineSelector().length!=0){
+    // while(listingEndingDefineSelector().length!=0){
+    while(true){
         totalTry++;
         if(temporaryBlockCrossSelector().length!=0){
             temporaryBlockCrossSelector().click();
@@ -777,7 +778,7 @@ async function scrollPage(){
         }
         document.documentElement.scrollTop+=1000;
         await ex_sleep(300);
-        if(totalTry>100){
+        if(totalTry>50){
             break;
         }
     }
@@ -1348,10 +1349,18 @@ async function preload_content_setup()
 function loginFromEmailInputSelector(){return $('#email');}
 function loginFromPasswordInputSelector(){return $('#pass');}
 function loginFromSubmitButtonSelector(){return $('._42ft._4jy0._6lth._4jy6._4jy1.selected._51sy');}
-function mapConfigurationMainButtonSelector(){return $('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.fe6kdd0r.mau55g9w.c8b282yb.iv3no6db.jq4qci2q.a3bd9o3v.lrazzd5p.q66pz984');}
-function mapConfigurationMilesMainButtonSelector(){return $('.cwj9ozl2.qbxu24ho.bxzzcbxg.lxuwth05.h2mp5456.beltcj47.p86d2i9g.aot14ch1.kzx2olss.goun2846.ccm00jje.s44p3ltw.mk2mc5f4.frvqaej8.ed0hlay0.afxsp9o4.jcgfde61.j83agx80.cbu4d94t.ni8dbmo4.stjgntxs.l9j0dhe7.du4w35lb.hw4tbnyy.nhd2j8a9.lzcic4wl')}
-function mapConfigurationMilesButtonSelector(){return $('.oajrlxb2.g5ia77u1.qu0x051f.esr5mh6w.e9989ue4.r7d6kgcz.rq0escxv.nhd2j8a9.j83agx80.p7hjln8o.kvgmc6g5.opuu4ng7.oygrvhab.kj2yoqh6.pybr56ya.dflh9lhu.f10w8fjw.scb9dxdr.i1ao9s8h.esuyzwwr.f1sip0of.lzcic4wl.n00je7tq.arfg74bv.qs9ysxi8.k77z8yql.l9j0dhe7.abiwlrkh.p8dawk7l.bp9cbjyn.dwo3fsh8.btwxx1t3.pfnyh3mw.du4w35lb');}
-function mapConfigugationMilesSubmitButtonSelector(){return $('.rq0escxv.l9j0dhe7.du4w35lb.j83agx80.cbu4d94t.pfnyh3mw.d2edcug0.hpfvmrgz.p8fzw8mz.pcp91wgn.iuny7tx3.ipjc6fyt>.oajrlxb2.g5ia77u1.qu0x051f.esr5mh6w.e9989ue4.r7d6kgcz.rq0escxv.nhd2j8a9.pq6dq46d.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.i1ao9s8h.esuyzwwr.f1sip0of.lzcic4wl.n00je7tq.arfg74bv.qs9ysxi8.k77z8yql.l9j0dhe7.abiwlrkh.p8dawk7l.cbu4d94t.taijpn5t.k4urcfbm');}
+function mapConfigurationMainButtonSelector(){
+    //a button on click will open change location popup
+    return $(`.${'qi72231t o9w3sbdw nu7423ey tav9wjvu flwp5yud tghlliq5 gkg15gwv s9ok87oh s9ljgwtm lxqftegz bf1zulr9 frfouenu bonavkto djs4p424 r7bn319e bdao358l fsf7x5fv tgm57n0e jez8cy9q s5oniofx l7ghb35v kjdc1dyq kmwttqpk dnr7xe2t aeinzg81 srn514ro oxkhqvkx rl78xhln nch0832m om3e55n1 cr00lzj9 rn8ck1ys s3jn8y49 g4tp4svg o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 jl2a5g8c f14ij5to l3ldwz01 alzwoclg icdlwmnq th51lws0'.split(' ').join('.')}`);}
+function mapConfigurationMilesMainButtonSelector(){
+    // a button on click will open all miles options
+    return $(`.${'k0kqjr44 c26d6ho5 sygo2mea qxuwncqo hxf2uw4e p5mefues j32recxq j94dm2s7 trbvugp6 s9ok87oh s9ljgwtm lxqftegz bf1zulr9 r4jidfu8 ahb38r9s scpwgmsl opot3u1k alzwoclg cqf1kptm lq84ybu9 hf30pyar om3e55n1 g4tp4svg puulpx3h fsf7x5fv icdlwmnq'.split(' ').join('.')}`)}
+function mapConfigurationMilesButtonSelector(){
+    // a button on click will choose a mile from other options
+    return $(`.${'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn s5oniofx rn8ck1ys s3jn8y49 o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 f14ij5to l3ldwz01 icdlwmnq i85zmo3j qgrdou9d bdao358l fsf7x5fv alzwoclg jl2a5g8c jez8cy9q sb3qexpo l7miuv0d m8h3af8h kjdc1dyq s1m0hq7j b0eko5f3 rj2hsocd fwlpnqze om3e55n1 cr00lzj9 g4tp4svg'.split(' ').join('.')}`);}
+function mapConfigugationMilesSubmitButtonSelector(){
+    // a button that confirms the mile choice
+    return $(`.${'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn fsf7x5fv s5oniofx m8h3af8h l7ghb35v kjdc1dyq kmwttqpk srn514ro oxkhqvkx rl78xhln nch0832m cr00lzj9 rn8ck1ys s3jn8y49 o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 f14ij5to l3ldwz01 icdlwmnq bdao358l fxk3tzhb cqf1kptm jcxyg2ei om3e55n1 mfclru0v'.split(' ').join('.')}`);}
 function listingEndingDefineSelector(){return $('.pybr56ya.ihqw7lf3.cbu4d94t.j83agx80.rq0escxv');}
 function temporaryBlockSelector(){return $('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.keod5gw0.nxhoafnm.aigsh9s9.ns63r2gh.fe6kdd0r.mau55g9w.c8b282yb.iv3no6db.o3w64lxj.b2s5l15y.hnhda86s.m9osqain.oqcyycmt');}
 function noProductSelector(){return $('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.keod5gw0.nxhoafnm.aigsh9s9.ns63r2gh.fe6kdd0r.mau55g9w.c8b282yb.iv3no6db.o3w64lxj.b2s5l15y.hnhda86s.m9osqain.oqcyycmt');}
