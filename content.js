@@ -871,7 +871,7 @@ async function setEmptyAreaWebDb(){
 }
 async function areaChange(){
     await showHTMLOnContentConsole('<div class="consoleAlert">Wait..plugin changing miles</div>');
-    await ex_sleep(5000);
+    await ex_sleep(10000);
     var miles = mapConfigurationMainButtonSelector().text().split('·')[1].includes('mile');
     var kilometers = mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometer') || mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometres');
     if(miles){
@@ -1365,7 +1365,7 @@ function listingEndingDefineSelector(){return $('.pybr56ya.ihqw7lf3.cbu4d94t.j83
 function temporaryBlockSelector(){
     return $(`.${'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas bx1hu7np hxfwr5lz rq8durfe luz166fr o48pnaf2 rtxb060y hsphh064'.split(' ').join('.')}`);}
 function noProductSelector(){return $('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.keod5gw0.nxhoafnm.aigsh9s9.ns63r2gh.fe6kdd0r.mau55g9w.c8b282yb.iv3no6db.o3w64lxj.b2s5l15y.hnhda86s.m9osqain.oqcyycmt');}
-function temporaryBlockCrossSelector(){return $('.oajrlxb2.tdjehn4e.qu0x051f.esr5mh6w.e9989ue4.r7d6kgcz.rq0escxv.nhd2j8a9.j83agx80.p7hjln8o.kvgmc6g5.cxmmr5t8.oygrvhab.hcukyx3x.jb3vyjys.rz4wbd8a.qt6c0cv9.a8nywdso.i1ao9s8h.esuyzwwr.f1sip0of.lzcic4wl.s45kfl79.emlxlaya.bkmhp75w.spb7xbtv.l9j0dhe7.abiwlrkh.p8dawk7l.bp9cbjyn.rt8b4zig.n8ej3o3l.agehan2d.sk4xxmp2.taijpn5t.tv7at329.thwo4zme');}
+function temporaryBlockCrossSelector(){return $(`.${'qi72231t n3hqoq4p r86q59rh b3qcqh3k fq87ekyn fsf7x5fv s5oniofx m8h3af8h l7ghb35v kjdc1dyq kmwttqpk cr00lzj9 rn8ck1ys s3jn8y49 f14ij5to l3ldwz01 icdlwmnq i85zmo3j qmqpeqxj e7u6y3za qwcclf47 nmlomj2f frfouenu bonavkto djs4p424 r7bn319e bdao358l alzwoclg jcxyg2ei srn514ro oxkhqvkx rl78xhln nch0832m om3e55n1 jvc6uz2b g90fjkqk a5wdgl2o'.split(' ').join('.')}`);}
 var data = [
 
     { 'slot': 'second', 'name': 'Cadiz, Kentucky', 'urlKey': '107475745949201', 'radius': '100'},
