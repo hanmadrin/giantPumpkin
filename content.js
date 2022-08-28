@@ -807,7 +807,7 @@ async function areaVerification(){
         await showHTMLOnContentConsole('<input value="'+ex_area.name+'">');
         await showHTMLOnContentConsole('<input value="'+ex_area.radius+'">');
         await showHTMLOnContentConsole('set the name and miles...then refresh');
-        await setSkipAreaWebDb();
+        // await setSkipAreaWebDb();
     }
     
 }
