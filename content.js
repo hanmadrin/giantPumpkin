@@ -491,9 +491,10 @@ async function dataCollectionProcessScraping(){
                         ex_listed = await getStorageSingleData('ex_listed');
                         ex_redirection('https://www.facebook.com/marketplace/item/'+ex_listed[currentIndex].number,'item scraping redirection '+ex_listed[currentIndex].number);
                     }
-                }catch{
+                }catch(e){
                     if(temporaryBlockSelector().length==0){
-                        await skipCurrentProductScraping();
+                        console.log(e);
+                        // await skipCurrentProductScraping();
                     }else{
                         await setStorageSingleData('ex_id',null);
                         await userLogout();
@@ -521,30 +522,30 @@ function classesToSelector(classes){
     return selector;
 }
 async function scrapingLevelZero(index,number){
-    let holderParentClasses = 'r7ybg2qv qbc87b33 jk4gexc9 alzwoclg cqf1kptm lq84ybu9 g4tp4svg ly56v2vv h67akvdo ir1gxh3s sqler345 by1hb0a5 thmcm15y i15ihif8 dnr7xe2t id4k59z1 jfw19y2w b95sz57d mm05nxu8 izce65as om3e55n1 qbfhvn0q cgu29s5g nuz1ool1 q6feio67 mfclru0v l4a8l1zh';
+    let holderParentClasses = 'xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft x1iyjqo2 xqtp20y xx6bls6 xh8yej3 xiylbte';
     let holderParent = document.querySelector(`[class="${holderParentClasses}"]`);
-    let holderClasses = 'alzwoclg cqf1kptm cgu29s5g om3e55n1';
+    let holderClasses = 'x78zum5 xdt5ytf x1iyjqo2 x1n2onr6';
     let holder = holderParent.querySelector(`[class="${holderClasses}"]`);
     //year vehicle
-    let yearNameClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas thx2cq4v hxfwr5lz qntmu8s7 tq4zoyjo o48pnaf2 pbevjfx6';
+    let yearNameClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x14z4hjw x3x7a5m xngnso2 x1qb5hxa x1xlr1w8 xzsf02u';
     let year = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.match(/^\d{4}/).toString().replace(/,/g, "");
     let name = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.replace(/^\d{4}/, '').trim().replace(/,/g, "");
     //price
-    let priceClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas m2nijcs8 szxhu1pg hpj0pwwo sggt6rq5 innypi6y pbevjfx6';
+    let priceClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1lkfr7t x1lbecb7 x1s688f xzsf02u';
     let price = holder.querySelector(`${classesToSelector(priceClasses)}`).innerText.match(/\d+/g).join('');
     //state city time
-    let stateCityTimeClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas f5mw3jnl szxhu1pg nfkogyam kkmhubc1 tes86rjd rtxb060y';
+    let stateCityTimeClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa xo1l8bm xi81zsa';
     let stateCityTime = holder.querySelector(`${classesToSelector(stateCityTimeClasses)}`).innerText;
     let state = stateCityTime.split('in ')[1].match(/[A-Z]{2}/).toString().trim().replace(/,/g, "");
     let city = stateCityTime.split(' in ')[1].replace(/, [A-Z]{2}/, '').trim().replace(/,/g, "");
     let time = stateCityTime.split(' in ')[0].replace('VehiclesListed', '').replace('Listed', '').replace('ago', '').trim().replace(/,/g, "");
     //mileage
-    let mileageHolderClasses = 'aeinzg81 i15ihif8 cgu29s5g jg3vgc78 gb2oqlaf';
-    let mileageClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas m2nijcs8 hxfwr5lz k1z55t6l oog5qr5w tes86rjd pbevjfx6';
+    let mileageHolderClasses = 'xeuugli xs83m0k x1iyjqo2 x1r8uery xamitd3';
+    let mileageClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x3x7a5m x6prxxf xvq8zen xo1l8bm xzsf02u';
     let mileage = holder.querySelector(`${classesToSelector(mileageHolderClasses)}>${classesToSelector(mileageClasses)}`).innerText.match(/\d+/g).join('').replace(/,/g, "");
     //seller
-    let sellerHolderClasses = 'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn bdao358l fsf7x5fv rse6dlih s5oniofx m8h3af8h l7ghb35v kjdc1dyq kmwttqpk srn514ro oxkhqvkx rl78xhln nch0832m cr00lzj9 rn8ck1ys s3jn8y49 icdlwmnq cxfqmxzd pbevjfx6 innypi6y';
-    let sellerClasses = 'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw k1z55t6l oog5qr5w innypi6y pbevjfx6';
+    let sellerHolderClasses = 'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz xt0b8zv xzsf02u x1s688f';
+    let sellerClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x6prxxf xvq8zen x1s688f xzsf02u';
     let seller = holder.querySelector(`${classesToSelector(sellerHolderClasses)}>${classesToSelector(sellerClasses)}`).innerText.trim().replace(/,/g, "");
     console.log([year,name,price,state,city,time,mileage,seller].join('|'));
     return {
@@ -710,7 +711,7 @@ async function collectDataFromPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         for(i=0;i<items.length;i++){
             const dealerShip = items[i].innerText.search('Dealership');
-            const state = items[i].querySelector('.i0rxk2l3.d2v05h0u:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
+            const state = items[i].querySelector('.x1gslohp.xkh6y0r:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
             if(dealerShip==-1){
                 if(isSpecifiedState(state)){
                     numbers.push(items[i].getAttribute('href').split('/')[3]);
@@ -1351,16 +1352,16 @@ function loginFromPasswordInputSelector(){return $('#pass');}
 function loginFromSubmitButtonSelector(){return $('._42ft._4jy0._6lth._4jy6._4jy1.selected._51sy');}
 function mapConfigurationMainButtonSelector(){
     //a button on click will open change location popup
-    return $(`.${'qi72231t o9w3sbdw nu7423ey tav9wjvu flwp5yud tghlliq5 gkg15gwv s9ok87oh s9ljgwtm lxqftegz bf1zulr9 frfouenu bonavkto djs4p424 r7bn319e bdao358l fsf7x5fv tgm57n0e jez8cy9q s5oniofx l7ghb35v kjdc1dyq kmwttqpk dnr7xe2t aeinzg81 srn514ro oxkhqvkx rl78xhln nch0832m om3e55n1 cr00lzj9 rn8ck1ys s3jn8y49 g4tp4svg o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 jl2a5g8c f14ij5to l3ldwz01 alzwoclg icdlwmnq th51lws0'.split(' ').join('.')}`);}
+    return $(`.${'x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xa49m3k xqeqjp1 x2hbi6w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xdl72j9 x2lah0s xe8uvvx x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x1q0g3np x87ps6o x1lku1pv x78zum5 x1a2a7pz x1xmf6yo'.split(' ').join('.')}`);}
 function mapConfigurationMilesMainButtonSelector(){
     // a button on click will open all miles options
-    return $(`.${'k0kqjr44 c26d6ho5 sygo2mea qxuwncqo hxf2uw4e p5mefues j32recxq j94dm2s7 trbvugp6 s9ok87oh s9ljgwtm lxqftegz bf1zulr9 r4jidfu8 ahb38r9s scpwgmsl opot3u1k alzwoclg cqf1kptm lq84ybu9 hf30pyar om3e55n1 g4tp4svg puulpx3h fsf7x5fv icdlwmnq'.split(' ').join('.')}`)}
+    return $(`.${'x1jx94hy x8cjs6t x1ch86jh x80vd3b xckqwgs xhk9q7s x1otrzb0 x1i1ezom x1o6z2jb x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x178xt8z xm81vs4 xso031l xy80clv x78zum5 xdt5ytf x6ikm8r x10wlt62 x1n2onr6 x1ja2u2z x1egnk41 x1ypdohk x1a2a7pz'.split(' ').join('.')}`)}
 function mapConfigurationMilesButtonSelector(){
     // a button on click will choose a mile from other options
-    return $(`.${'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn s5oniofx rn8ck1ys s3jn8y49 o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 f14ij5to l3ldwz01 icdlwmnq i85zmo3j qgrdou9d bdao358l fsf7x5fv alzwoclg jl2a5g8c jez8cy9q sb3qexpo l7miuv0d m8h3af8h kjdc1dyq s1m0hq7j b0eko5f3 rj2hsocd fwlpnqze om3e55n1 cr00lzj9 g4tp4svg'.split(' ').join('.')}`);}
+    return $(`.${'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s x1w4qvff x13mpval xdj266r xat24cr xz9dl7a x1sxyh0 xsag5q8 xurb0ha x1n2onr6 x16tdsg8 x1ja2u2z'.split(' ').join('.')}`);}
 function mapConfigugationMilesSubmitButtonSelector(){
     // a button that confirms the mile choice
-    return $(`.${'qi72231t nu7423ey n3hqoq4p r86q59rh b3qcqh3k fq87ekyn fsf7x5fv s5oniofx m8h3af8h l7ghb35v kjdc1dyq kmwttqpk srn514ro oxkhqvkx rl78xhln nch0832m cr00lzj9 rn8ck1ys s3jn8y49 o9erhkwx dzqi5evh hupbnkgi hvb2xoa8 f14ij5to l3ldwz01 icdlwmnq bdao358l fxk3tzhb cqf1kptm jcxyg2ei om3e55n1 mfclru0v'.split(' ').join('.')}`);}
+    return $(`.${'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x1ypdohk xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3'.split(' ').join('.')}`);}
 function listingEndingDefineSelector(){return $('.pybr56ya.ihqw7lf3.cbu4d94t.j83agx80.rq0escxv');}
 function temporaryBlockSelector(){
     return $(`.${'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas bx1hu7np hxfwr5lz rq8durfe luz166fr o48pnaf2 rtxb060y hsphh064'.split(' ').join('.')}`);}
