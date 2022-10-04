@@ -494,7 +494,7 @@ async function dataCollectionProcessScraping(){
                 }catch(e){
                     if(temporaryBlockSelector().length==0){
                         console.log(e);
-                        // await skipCurrentProductScraping();
+                        await skipCurrentProductScraping();
                     }else{
                         await setStorageSingleData('ex_id',null);
                         await userLogout();
