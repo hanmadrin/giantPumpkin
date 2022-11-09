@@ -493,14 +493,14 @@ async function dataCollectionProcessScraping(){
                     }
                 }catch(e){
                     console.log(e);
-                    if(temporaryBlockSelector().length==0){
-                        console.log(e);
-                        await skipCurrentProductScraping();
-                    }else{
-                        await setStorageSingleData('ex_id',null);
-                        await userLogout();
-                        await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
-                    }
+                    // if(temporaryBlockSelector().length==0){
+                    //     console.log(e);
+                    //     await skipCurrentProductScraping();
+                    // }else{
+                    //     await setStorageSingleData('ex_id',null);
+                    //     await userLogout();
+                    //     await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
+                    // }
                 }
                 console.log(scraped);
             }else{
