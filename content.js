@@ -492,6 +492,7 @@ async function dataCollectionProcessScraping(){
                         ex_redirection('https://www.facebook.com/marketplace/item/'+ex_listed[currentIndex].number,'item scraping redirection '+ex_listed[currentIndex].number);
                     }
                 }catch(e){
+                    console.log(e);
                     if(temporaryBlockSelector().length==0){
                         console.log(e);
                         await skipCurrentProductScraping();
@@ -524,7 +525,7 @@ function classesToSelector(classes){
 async function scrapingLevelZero(index,number){
     let holderParentClasses = 'xb57i2i x1q594ok x5lxg6s x78zum5 xdt5ytf x6ikm8r x1ja2u2z x1pq812k x1rohswg xfk6m8 x1yqm8si xjx87ck x1l7klhg xs83m0k x2lwn1j xx8ngbg xwo3gff x1oyok0e x1odjw0f x1e4zzel x1n2onr6 xq1qtft x1iyjqo2 xqtp20y xx6bls6 xh8yej3 xiylbte';
     let holderParent = document.querySelector(`[class="${holderParentClasses}"]`);
-    let holderClasses = 'x78zum5 xdt5ytf x1iyjqo2 x1n2onr6';
+    let holderClasses = 'x78zum5 x1iyjqo2 x1n2onr6 xdt5ytf';
     let holder = holderParent.querySelector(`[class="${holderClasses}"]`);
     //year vehicle
     let yearNameClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x14z4hjw x3x7a5m xngnso2 x1qb5hxa x1xlr1w8 xzsf02u';
