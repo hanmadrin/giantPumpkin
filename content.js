@@ -493,6 +493,7 @@ async function dataCollectionProcessScraping(){
                     }
                 }catch(e){
                     console.log(e);
+                    await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
                         console.log(e);
                         await skipCurrentProductScraping();
