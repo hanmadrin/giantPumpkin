@@ -538,7 +538,7 @@ async function scrapingLevelZero(index,number){
     //state city time
     let stateCityTimeClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa xo1l8bm xi81zsa';
     let stateCityTime = holder.querySelector(`${classesToSelector(stateCityTimeClasses)}`).innerText;
-    let state = stateCityTime.split('in ')[1].match(/[A-Z]{2}/).toString().trim().replace(/,/g, "");
+    let state = stateCityTime.split(' in ')[1].match(/[A-Z]{2}/).toString().trim().replace(/,/g, "");
     let city = stateCityTime.split(' in ')[1].replace(/, [A-Z]{2}/, '').trim().replace(/,/g, "");
     let time = stateCityTime.split(' in ')[0].replace('VehiclesListed', '').replace('Listed', '').replace('ago', '').trim().replace(/,/g, "");
     //mileage
