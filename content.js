@@ -884,6 +884,7 @@ async function areaChange(){
         await ex_sleep(5000);
         var ex_area = await getStorageSingleData('ex_area');
         mapConfigurationMilesButtonSelector().eq(milesToAreaButtonNumber(ex_area.radius)).click();
+        console.log(mapConfigurationMilesButtonSelector().eq(milesToAreaButtonNumber(ex_area.radius)));
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
     }else if(kilometers){
@@ -1357,7 +1358,7 @@ function mapConfigurationMainButtonSelector(){
     return $(`.${'x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xa49m3k xqeqjp1 x2hbi6w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xdl72j9 x2lah0s xe8uvvx x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x1q0g3np x87ps6o x1lku1pv x78zum5 x1a2a7pz x1xmf6yo'.split(' ').join('.')}`);}
 function mapConfigurationMilesMainButtonSelector(){
     // a button on click will open all miles options
-    return $(`.${'x1jx94hy x8cjs6t x1ch86jh x80vd3b xckqwgs xhk9q7s x1otrzb0 x1i1ezom x1o6z2jb x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x178xt8z xm81vs4 xso031l xy80clv x78zum5 xdt5ytf x6ikm8r x10wlt62 x1n2onr6 x1ja2u2z x1egnk41 x1ypdohk x1a2a7pz'.split(' ').join('.')}`)}
+    return $(`.${'xjyslct xjbqb8w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x78zum5 x1jchvi3 x1fcty0u x132q4wb xdj266r x11i5rnm xat24cr x1mh8g0r x1a2a7pz x9desvi x1pi30zi x1a8lsjc x1n2onr6 x16tdsg8 xh8yej3 x1ja2u2z xzsf02u x1swvt13'.split(' ').join('.')}`)}
 function mapConfigurationMilesButtonSelector(){
     // a button on click will choose a mile from other options
     return $(`.${'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s x1w4qvff x13mpval xdj266r xat24cr xz9dl7a x1sxyh0 xsag5q8 xurb0ha x1n2onr6 x16tdsg8 x1ja2u2z'.split(' ').join('.')}`);}
