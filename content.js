@@ -781,7 +781,7 @@ async function scrollPage(){
         }
         document.documentElement.scrollTop+=1000;
         await ex_sleep(300);
-        if(totalTry>50){
+        if(totalTry>100){
             break;
         }
     }
