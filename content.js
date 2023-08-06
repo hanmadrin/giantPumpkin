@@ -471,31 +471,42 @@ async function dataCollectionProcessScraping(){
                     try{
                         try{
                             scraped = await scrapingLevelZero(2,number);
-                        }catch{
+                        }catch(err){
+                            console.log(err);
                             scraped = await scrapingLevelZero(1,number);
                         }
                     }catch{
+                        
                         await ex_sleep(5000);
                         try{
                             scraped = await scrapingLevelZero(2,number);
-                        }catch{
+                        }catch(err){
+                            console.log(err);
                             scraped = await scrapingLevelZero(1,number);
                         }
                     }
                     if(scraped!=null){
+                        // throw new Error(e);
                         await showHTMLOnContentConsole('total:'+ex_listed.length);
                         await showHTMLOnContentConsole('current:'+currentIndex);
                         ex_listed[currentIndex] = scraped;
                         await setStorageSingleData('ex_listed',ex_listed);
                         currentIndex = await currentScrapingIndex();
                         ex_listed = await getStorageSingleData('ex_listed');
-                        ex_redirection('https://www.facebook.com/marketplace/item/'+ex_listed[currentIndex].number,'item scraping redirection '+ex_listed[currentIndex].number);
+                        if(currentIndex != null){
+                            ex_redirection('https://www.facebook.com/marketplace/item/'+ex_listed[currentIndex].number,'item scraping redirection '+ex_listed[currentIndex].number);
+                        }else{
+                            var ex_area = await getStorageSingleData('ex_area');
+                            ex_area.status = "scraped";
+                            await setStorageSingleData('ex_area',ex_area);
+                            ex_redirection('https://www.facebook.com/','to home scraping just done')
+                        }
                     }
                 }catch(e){
                     console.log(e);
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
-                        console.log(e);
+                        throw new Error(e);
                         await skipCurrentProductScraping();
                     }else{
                         await setStorageSingleData('ex_id',null);
