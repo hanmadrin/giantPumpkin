@@ -541,7 +541,13 @@ async function scrapingLevelZero(index,number){
     let holder = holderParent.querySelector(`${classesToSelector(holderClasses)}`);
     //year vehicle
     let yearNameClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x14z4hjw x3x7a5m xngnso2 x1qb5hxa x1xlr1w8 xzsf02u';
-    let year = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.match(/^\d{4}/).toString().replace(/,/g, "");
+    let year;
+    try{
+        year = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.match(/^\d{4}/).toString().replace(/,/g, "")
+    }catch(err){
+        console.log(err);
+        year = "";
+    }
     let name = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.replace(/^\d{4}/, '').trim().replace(/,/g, "");
     //price
     let priceClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1lkfr7t x1lbecb7 x1s688f xzsf02u';
