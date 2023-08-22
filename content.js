@@ -506,7 +506,8 @@ async function dataCollectionProcessScraping(){
                     console.log(e);
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
-                        // throw new Error(e);
+                        console.log(e)
+                        throw new Error(e);
                         await skipCurrentProductScraping();
                     }else{
                         await setStorageSingleData('ex_id',null);
