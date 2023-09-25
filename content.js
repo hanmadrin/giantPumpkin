@@ -508,7 +508,7 @@ async function dataCollectionProcessScraping(){
                     if(temporaryBlockSelector().length==0){
                         console.log(e)
                         await showHTMLOnContentConsole('<button id="skipCurrentProductScraping" onclick="await skipCurrentProductScraping()">Skip Current Product Scraping</button>')
-                        // throw new Error(e);
+                        throw new Error(e);
 
                         await skipCurrentProductScraping();
                     }else{
