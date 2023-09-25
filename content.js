@@ -552,8 +552,8 @@ async function scrapingLevelZero(index,number){
     let name = holder.querySelector(`${classesToSelector(yearNameClasses)}`).innerText.replace(/^\d{4}/, '').trim().replace(/,/g, "");
     //price
     let priceClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1lkfr7t x1lbecb7 x1s688f xzsf02u';
-    const priceClasses2 = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1jchvi3 x1lbecb7 x1s688f xzsf02u';
-    const priceElement = holder.querySelector(`${classesToSelector(priceClasses)}`) || holder.querySelector(`${classesToSelector(priceClasses2)}`);
+    // const priceClasses2 = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1jchvi3 x1lbecb7 x1s688f xzsf02u';
+    const priceElement = holder.querySelector(`${classesToSelector(priceClasses)}`);// || holder.querySelector(`${classesToSelector(priceClasses2)}`);
     let price = priceElement.innerText.match(/\d+/g).join('');
     //state city time
     let stateCityTimeClasses = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa xo1l8bm xi81zsa';
