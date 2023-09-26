@@ -563,7 +563,7 @@ async function scrapingLevelZero(index,number){
     const stateCityBeforeIn = stateCityTime.split(' in ')[0];
     const stateCityWithoutBeforeIn =  stateCityTime.replace(stateCityBeforeIn,'').trim();
     let state = stateCityWithoutBeforeIn.match(/[A-Z]{2}/).toString().trim().replace(/,/g, "");
-    let city = stateCityWithoutBeforeIn.replace(/, [A-Z]{2}/, '').trim().replace(/,/g, "");
+    let city = stateCityWithoutBeforeIn.replace(/, [A-Z]{2}/, '').trim().replace(/,/g, "").replace(/^in /g, '');
     let time = stateCityBeforeIn.replace('VehiclesListed', '').replace('Listed', '').replace('ago', '').trim().replace(/,/g, "");
     //mileage
     let mileageHolderClasses = 'xeuugli xs83m0k x1iyjqo2 x1r8uery xamitd3';
