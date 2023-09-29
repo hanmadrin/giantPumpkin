@@ -507,7 +507,16 @@ async function dataCollectionProcessScraping(){
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
                         console.log(e)
-                        await showHTMLOnContentConsole('<button id="skipCurrentProductScraping" onclick="console.log(`skipping`);await skipCurrentProductScraping()">Skip Current Product Scraping</button>')
+                        // sett button
+                        const dataConsole = document.querySelector('#ex_console_div');
+                        const button = document.createElement('button');
+                        button.innerText = 'Skip';
+                        button.id = 'ex_skip_button';
+                        button.style = 'background-color: #4CAF50; /* Green */border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;';
+                        button.addEventListener('click',async function(){
+                            console.log('skipping this item');
+                            await skipCurrentProductScraping();
+                        });
                         throw new Error(e);
 
                         await skipCurrentProductScraping();
