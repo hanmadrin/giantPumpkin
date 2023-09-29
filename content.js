@@ -517,6 +517,7 @@ async function dataCollectionProcessScraping(){
                             console.log('skipping this item');
                             await skipCurrentProductScraping();
                         });
+                        dataConsole.append(button);
                         throw new Error(e);
 
                         await skipCurrentProductScraping();
