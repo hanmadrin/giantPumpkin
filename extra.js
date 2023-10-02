@@ -6,11 +6,13 @@
 (async ()=>{
     
     const action = await getStorageSingleData('pageBypassWork');
+    console.log(action);
     // alert(action);
     if(action=="productSaving"){
         let ex_listed = await getStorageSingleData('ex_listed');
         let ex_workId = await getStorageSingleData('ex_workId');
         let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
+        console.log(ex_listed)
         await $.ajax({
             type: 'post',
             url: ex_apiUrl,
