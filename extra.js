@@ -33,8 +33,9 @@
                     document.body.innerText ='SERVER:'+response.message;
                 }
             },
-            error: async function()
+            error: async function(e)
             {
+                console.log(e);
                 document.body.innerText ='communication error';
             }
         });
