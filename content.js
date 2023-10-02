@@ -468,23 +468,8 @@ async function dataCollectionProcessScraping(){
             var scraped = null;
             if(window.location.href=='https://www.facebook.com/marketplace/item/'+number){
                 try{
-                    try{
-                        try{
-                            scraped = await scrapingLevelZero(2,number);
-                        }catch(err){
-                            console.log(err);
-                            scraped = await scrapingLevelZero(1,number);
-                        }
-                    }catch{
-                        
-                        await ex_sleep(5000);
-                        try{
-                            scraped = await scrapingLevelZero(2,number);
-                        }catch(err){
-                            console.log(err);
-                            scraped = await scrapingLevelZero(1,number);
-                        }
-                    }
+                    scraped = getItemInformationFromMarketplaceItemPage();
+                    await ex_sleep(3000);
                     if(scraped!=null){
                         // throw new Error(e);
                         await showHTMLOnContentConsole('total:'+ex_listed.length);
@@ -501,6 +486,8 @@ async function dataCollectionProcessScraping(){
                             await setStorageSingleData('ex_area',ex_area);
                             ex_redirection('https://www.facebook.com/','to home scraping just done')
                         }
+                    }else{
+                        throw new Error('scraped is null');
                     }
                 }catch(e){
                     console.log(e);
@@ -591,6 +578,96 @@ async function scrapingLevelZero(index,number){
         status:'done'
     } 
 }
+const getItemInformationFromMarketplaceItemPage = ()=>{
+    const jsonScripts = document.querySelectorAll('script[type="application/json"]');
+    let jsonData = null;
+    for(let i=0;i<jsonScripts.length;i++){
+        const fullText = jsonScripts[i].textContent;
+        // find "marketplace_product_details_page"
+        if(fullText.includes('marketplace_product_details_page')){
+            jsonData = JSON.parse(fullText);
+            break;
+        }
+    }
+    if(jsonData){ 
+        const findNestedKeyValue = (obj, targetKey)=>{
+            for (const key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                const value = obj[key];
+                if (key === targetKey) {
+                  return value;
+                } else if (typeof value === 'object') {
+                  const result = findNestedKeyValue(value, targetKey);
+                  if (result !== undefined) {
+                    return result;
+                  }
+                }
+              }
+            }
+            return undefined;
+        }
+        const stateConverter = (shortState)=>{
+            // var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV'];
+            var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
+            var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia','Minnesota','Iowa','Missouri','Arkansas','Texas','Oklahoma','Kansas','North Dakota'];
+            // var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia'];
+            // var states = ['Minnesota','Iowa','Missouri','Arkansas','Texas'];
+            return shortStates.indexOf(shortState)==-1?shortState:states[shortStates.indexOf(shortState)];
+        };
+        const timeStampConverter = (timeStamp)=>{
+            return (new Date(timeStamp)).toLocaleString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZoneName: 'short',
+                hour12: false,
+              });
+        };
+        const marketplaceProductDetailsPage = findNestedKeyValue(jsonData, 'marketplace_product_details_page');
+        if(marketplaceProductDetailsPage) {
+            const item = marketplaceProductDetailsPage.target;
+            const yearName = item.custom_title;
+            const year = yearName.match(/^\d{4}/);
+            const name = yearName.replace(/^\d{4}/, '').trim();
+            const price = item.listing_price.amount.replace('.00', '');
+            const cityState = item.location_text.text;
+            const city = cityState.split(',')[0];
+            const state = stateConverter(cityState.split(',')[1].trim());
+            const mileage = item.vehicle_odometer_data.value.toString();
+            const seller = item.marketplace_listing_seller.name;
+            const time = timeStampConverter(item.creation_time);
+            const number = item.id;
+            const data = {
+                year: year,
+                name: name,
+                price: price,
+                city: city,
+                state: state,
+                mileage: mileage,
+                seller: seller,
+                time: time,
+                number: number,
+                status:'done'
+            }
+            console.log(data);
+            return data;
+        }else{
+            console.log('marketplace_product_details_page not found')
+            return null;
+        }
+    }else{
+        console.log('script not found')
+        return null;
+    }
+    
+    
+
+
+
+};
 // async function scrapingLevelZero(index,number){
 //     $all_holder = $('[name=google-site-verification').parent().children().eq(index).children('div').children().eq(1).children('div').children('div').eq(0).children('div').eq(0).children();
 //     data_price = $all_holder.eq(0).find('.d2edcug0.hpfvmrgz.qv66sw1b.c1et5uql.lr9zc1uh.a8c37x1j.keod5gw0.nxhoafnm.aigsh9s9.d3f4x2em.fe6kdd0r.mau55g9w.c8b282yb.mdeji52x.a5q79mjw.g1cxx5fr.lrazzd5p.oo9gr5id').eq(0).text();
