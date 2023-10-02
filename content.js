@@ -630,7 +630,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
         if(marketplaceProductDetailsPage) {
             const item = marketplaceProductDetailsPage.target;
             const yearName = item.custom_title;
-            const year = yearName.match(/^\d{4}/);
+            const year = yearName.match(/^\d{4}/).toString().replace(/,/g, "");
             const name = yearName.replace(/^\d{4}/, '').trim();
             const price = item.listing_price.amount.replace('.00', '');
             const cityState = item.location_text.text;
