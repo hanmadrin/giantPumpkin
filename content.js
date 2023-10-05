@@ -630,25 +630,25 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
         if(marketplaceProductDetailsPage) {
             const item = marketplaceProductDetailsPage.target;
             const yearName = item.custom_title;
-            const year = yearName.match(/^\d{4}/).toString().replace(/,/g, "");
+            const year = yearName.match(/^\d{4}/).toString();
             const name = yearName.replace(/^\d{4}/, '').trim();
             const price = item.listing_price.amount.replace('.00', '');
             const cityState = item.location_text.text;
-            const city = cityState.split(',').length==1?"":cityState.split(',')[0].trim();
+            const city = (cityState.split(',').length==1?"":cityState.split(',')[0]).trim();
             const state = stateConverter(cityState.split(',').length==1?cityState.split(',')[0].trim():cityState.split(',')[1].trim());
             const mileage = item.vehicle_odometer_data.value.toString();
             const seller = item.marketplace_listing_seller.name;
-            const time = item.marketplace_listing_seller.id;
+            const seller_id = item.marketplace_listing_seller.id;
             const number = item.id;
             const data = {
-                year: year,
-                name: name,
-                price: price,
-                city: city,
-                state: state,
-                mileage: mileage,
-                seller: seller,
-                time: time,
+                year: year.replace(/,/g, ""),
+                name: name.replace(/,/g, ""),
+                price: price.replace(/,/g, ""),
+                city: city.replace(/,/g, ""),
+                state: state.replace(/,/g, ""),
+                mileage: mileage.replace(/,/g, ""),
+                seller: seller.replace(/,/g, ""),
+                time: seller_id,
                 number: number,
                 status:'done'
             }
