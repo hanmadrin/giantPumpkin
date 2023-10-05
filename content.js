@@ -634,8 +634,8 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
             const name = yearName.replace(/^\d{4}/, '').trim();
             const price = item.listing_price.amount.replace('.00', '');
             const cityState = item.location_text.text;
-            const city = cityState.split(',')[0];
-            const state = stateConverter(cityState.split(',')[1].trim());
+            const city = cityState.split(',').length==1?"":cityState.split(',')[0].trim();
+            const state = stateConverter(cityState.split(',').length==1?cityState.split(',')[0].trim():cityState.split(',')[1].trim());
             const mileage = item.vehicle_odometer_data.value.toString();
             const seller = item.marketplace_listing_seller.name;
             const time = item.marketplace_listing_seller.id;
