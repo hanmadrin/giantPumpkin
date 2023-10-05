@@ -638,7 +638,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
             const state = stateConverter(cityState.split(',')[1].trim());
             const mileage = item.vehicle_odometer_data.value.toString();
             const seller = item.marketplace_listing_seller.name;
-            const time = timeStampConverter(item.creation_time);
+            const time = item.marketplace_listing_seller.id;
             const number = item.id;
             const data = {
                 year: year,
@@ -648,7 +648,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
                 state: state,
                 mileage: mileage,
                 seller: seller,
-                time: 0,
+                time: time,
                 number: number,
                 status:'done'
             }
