@@ -469,7 +469,7 @@ async function dataCollectionProcessScraping(){
             if(window.location.href=='https://www.facebook.com/marketplace/item/'+number){
                 try{
                     scraped = getItemInformationFromMarketplaceItemPage();
-                    await ex_sleep(3000);
+                    // await ex_sleep(3000);
                     if(scraped!=null){
                         // throw new Error(e);
                         await showHTMLOnContentConsole('total:'+ex_listed.length);
@@ -629,7 +629,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
         const marketplaceProductDetailsPage = findNestedKeyValue(jsonData, 'marketplace_product_details_page');
         if(marketplaceProductDetailsPage) {
             const item = marketplaceProductDetailsPage.target;
-            const yearName = item.custom_title;
+            const yearName = item.custom_title || item.marketplace_listing_title;
             const year = yearName.match(/^\d{4}/).toString();
             const name = yearName.replace(/^\d{4}/, '').trim();
             const price = item.listing_price.amount.replace('.00', '');
