@@ -629,7 +629,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
         const marketplaceProductDetailsPage = findNestedKeyValue(jsonData, 'marketplace_product_details_page');
         if(marketplaceProductDetailsPage) {
             const item = marketplaceProductDetailsPage.target;
-            const yearName = item.custom_title || item.marketplace_listing_title;
+            const yearName = (item.custom_title || item.marketplace_listing_title).replace(/(^SUV )|(^CAR )/g,'');
             const year = yearName.match(/^\d{4}/).toString();
             const name = yearName.replace(/^\d{4}/, '').trim();
             const price = item.listing_price.amount.replace('.00', '');
