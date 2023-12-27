@@ -493,6 +493,11 @@ async function dataCollectionProcessScraping(){
                     console.log(e);
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
+                        if(await redirectionAllowed(`item:${number}`)){
+                            ex_redirection('https://www.facebook.com/marketplace/item/'+number,`item:${number}`);
+                            return;
+                        }
+                        // XAVVV
                         console.log(e)
                         // sett button
                         const dataConsole = document.querySelector('#ex_console_div');
