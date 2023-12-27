@@ -494,6 +494,7 @@ async function dataCollectionProcessScraping(){
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
                         if(await redirectionAllowed(`item:${number}`)){
+                            showHTMLOnContentConsole("trying again");
                             ex_redirection('https://www.facebook.com/marketplace/item/'+number,`item:${number}`);
                             return;
                         }
