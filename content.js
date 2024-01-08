@@ -1356,6 +1356,9 @@ async function eventListenerMethods(){
         await setStorageSingleData('ex_apiUrl',ex_apiUrl);
         await showHTMLOnContentConsole('data saved');
     });
+    $('body').on('click','#removeAccount',async function(){
+        await idGotDisabled();
+    });
     $('body').on('click','#clearErrorButton',async function(){
         await setStorageSingleData('ex_redirectionMessages',null);
         await showHTMLOnContentConsole('error data cleared');
@@ -1404,6 +1407,7 @@ async function showInitialInputForm(){
     var ex_apiUrl = initialDatas['ex_apiUrl'];
     content = '';
     if(ex_switch==null) {content += '<div>Turn on the main switch to start working</div>';}
+    content += '<button type="button" class="buttons" id="removeAccount">remove Account</button>';
     content += '<div><input type="text" class="inputFields" id="mainInputuser" value="'+ex_user+'" placeholder="user: silver/red/green/blue"><div>';
     content += '<div><input type="text" class="inputFields" id="mainInputSlot" value="'+ex_slot+'" placeholder="slot: first/second"></div>';
     content += '<div><input type="text" class="inputFields" id="mainInputWorkId" value="'+ex_workId+'" placeholder="workId: 22-3/22-5/23-4..."></div>';
@@ -1700,3 +1704,5 @@ var data = [
     { 'slot': 'first', 'name': 'Mentor, Ohio', 'urlKey': '108177469202553', 'radius': '20'},
     { 'slot': 'first', 'name': 'Ashtabula, Ohio', 'urlKey': '104136239622333', 'radius': '20'},
   ];
+
+
