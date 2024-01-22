@@ -326,7 +326,7 @@ const oldfacebookCollectionUrls = [
     "https://www.facebook.com/marketplace/category/volkswagen-touareg/?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2021&minMileage=10000&minYear=2014&sortBy=creation_time_descend&exact=true"
 ];
 const facebookCollectionUrls = [
-    "https://www.facebook.com/marketplace/category/vehicles?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2021&minMileage=10000&minYear=2014&sortBy=creation_time_descend&exact=true"
+    "https://www.facebook.com/marketplace/category/vehicles?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2024&minMileage=10000&minYear=2014&sortBy=creation_time_descend&exact=true"
 ];
 async function pageBypassWork(action){
     await setStorageSingleData('pageBypassWork', action);
