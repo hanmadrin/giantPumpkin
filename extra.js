@@ -6,11 +6,13 @@
 (async ()=>{
     
     const action = await getStorageSingleData('pageBypassWork');
+    console.log(action);
     // alert(action);
     if(action=="productSaving"){
         let ex_listed = await getStorageSingleData('ex_listed');
         let ex_workId = await getStorageSingleData('ex_workId');
         let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
+        console.log(ex_listed)
         await $.ajax({
             type: 'post',
             url: ex_apiUrl,
@@ -31,8 +33,9 @@
                     document.body.innerText ='SERVER:'+response.message;
                 }
             },
-            error: async function()
+            error: async function(e)
             {
+                console.log(e);
                 document.body.innerText ='communication error';
             }
         });
@@ -233,6 +236,34 @@
             success: async function (response) {
                 if(response.type=='success'){
                     await setStorageSingleData('ex_area',null);
+                    window.location.href="https://facebook.com";
+                }else{
+                    document.body.innerText = 'server error';
+                }
+        
+            },
+            error: async function()
+            {
+                document.body.innerText = 'communication error';
+            }
+        });
+    }
+    if(action=='setErrors'){
+        let ex_area = await getStorageSingleData('ex_area');
+        let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
+        await $.ajax({
+            type: 'post',
+            url: ex_apiUrl,
+            dataType: 'json',
+            data: {
+                action: 'errorReporting',
+                info: {
+                    data: '',
+                }
+            },
+            success: async function (response) {
+                if(response.type=='success'){
+                    
                     window.location.href="https://facebook.com";
                 }else{
                     document.body.innerText = 'server error';
