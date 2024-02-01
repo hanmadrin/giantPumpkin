@@ -1000,8 +1000,8 @@ async function areaChange(){
         mapConfigurationMilesMainButtonSelector().click();
         await ex_sleep(5000);
         var ex_area = await getStorageSingleData('ex_area');
-        mapConfigurationMilesButtonSelector().eq(milesToAreaButtonNumber(ex_area.radius)).click();
-        console.log(mapConfigurationMilesButtonSelector().eq(milesToAreaButtonNumber(ex_area.radius)));
+        mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)].click();
+        console.log(mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)]);
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
     }else if(kilometers){
@@ -1009,7 +1009,7 @@ async function areaChange(){
         await ex_sleep(5000);
         mapConfigurationMilesMainButtonSelector().click();
         await ex_sleep(5000);
-        mapConfigurationMilesButtonSelector().eq(0).click();
+        mapConfigurationMilesButtonSelector()[0].click();
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
 
@@ -1029,7 +1029,7 @@ async function areaChange(){
         mapConfigurationMilesMainButtonSelector().click();
         await ex_sleep(5000);
         var ex_area = await getStorageSingleData('ex_area');
-        mapConfigurationMilesButtonSelector().eq(milesToAreaButtonNumber(ex_area.radius)).click();
+        mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)].click();
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
     }    
@@ -1482,10 +1482,11 @@ function mapConfigurationMilesMainButtonSelector(){
     return $(`.${'xjyslct xjbqb8w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x78zum5 x1jchvi3 x1fcty0u x132q4wb xdj266r x11i5rnm xat24cr x1mh8g0r x1a2a7pz x9desvi x1pi30zi x1a8lsjc x1n2onr6 x16tdsg8 xh8yej3 x1ja2u2z xzsf02u x1swvt13'.split(' ').join('.')}`)}
 function mapConfigurationMilesButtonSelector(){
     // a button on click will choose a mile from other options
-    return $(`.${'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xnqzcj9 x1gh759c xdj266r xat24cr x1344otq x1de53dj xz9dl7a xsag5q8 x1n2onr6 x16tdsg8 x1ja2u2z'.split(' ').join('.')}`);}
+    return document.querySelectorAll(`.${'x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xnqzcj9 x1gh759c xdj266r xat24cr x1344otq x1de53dj xz9dl7a xsag5q8 x1n2onr6 x16tdsg8 x1ja2u2z'.split(' ').join('.')}`);
+}
 function mapConfigugationMilesSubmitButtonSelector(){
     // a button that confirms the mile choice
-    return $(`.${'x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x1ypdohk xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3'.split(' ').join('.')}`);}
+    return $(`.${'x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n x1ypdohk xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3'.split(' ').join('.')}`);}
 function listingEndingDefineSelector(){return $('.pybr56ya.ihqw7lf3.cbu4d94t.j83agx80.rq0escxv');}
 function temporaryBlockSelector(){
     return $(`.${'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas bx1hu7np hxfwr5lz rq8durfe luz166fr o48pnaf2 rtxb060y hsphh064'.split(' ').join('.')}`);}
