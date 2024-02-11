@@ -614,8 +614,8 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
         }
         const stateConverter = (shortState)=>{
             // var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV'];
-            var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
-            var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia','Minnesota','Iowa','Missouri','Arkansas','Texas','Oklahoma','Kansas','North Dakota'];
+            var shortStates = ['WI','IL','TN','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
+            var states = ['Wisconsin','Illinois','Tennessee','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia','Minnesota','Iowa','Missouri','Arkansas','Texas','Oklahoma','Kansas','North Dakota'];
             // var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia'];
             // var states = ['Minnesota','Iowa','Missouri','Arkansas','Texas'];
             return shortStates.indexOf(shortState)==-1?shortState:states[shortStates.indexOf(shortState)];
@@ -1532,28 +1532,28 @@ var data = [
     { 'slot': 'second', 'name': 'Ringgold, Georgia', 'urlKey': '104022859635638', 'radius': '40'},
 
 
-    { 'slot': 'second', 'name': 'Grenada, Mississippi', 'urlKey': '112431062106458', 'radius': '80'},
-    { 'slot': 'second', 'name': 'Brandon, Mississippi', 'urlKey': '104021926301761', 'radius': '80'},
-    { 'slot': 'second', 'name': 'Lucedale, Mississippi', 'urlKey': '111967038820116', 'radius': '80'},
-    { 'slot': 'second', 'name': 'Woodville, Mississippi', 'urlKey': '111873852157988', 'radius': '60'},
-    { 'slot': 'second', 'name': 'Columbia, Mississippi', 'urlKey': '112167362129862', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Greenville, Mississippi', 'urlKey': '109540295731390', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Fulton, Mississippi', 'urlKey': '103119093062290', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Columbus, Mississippi', 'urlKey': '105532462814111', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Louisville, Mississippi', 'urlKey': '108154785880124', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Meridian, Mississippi', 'urlKey': '108168579207374', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Southaven, Mississippi', 'urlKey': '104034969634202', 'radius': '20'},
+    // { 'slot': 'second', 'name': 'Grenada, Mississippi', 'urlKey': '112431062106458', 'radius': '80'},
+    // { 'slot': 'second', 'name': 'Brandon, Mississippi', 'urlKey': '104021926301761', 'radius': '80'},
+    // { 'slot': 'second', 'name': 'Lucedale, Mississippi', 'urlKey': '111967038820116', 'radius': '80'},
+    // { 'slot': 'second', 'name': 'Woodville, Mississippi', 'urlKey': '111873852157988', 'radius': '60'},
+    // { 'slot': 'second', 'name': 'Columbia, Mississippi', 'urlKey': '112167362129862', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Greenville, Mississippi', 'urlKey': '109540295731390', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Fulton, Mississippi', 'urlKey': '103119093062290', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Columbus, Mississippi', 'urlKey': '105532462814111', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Louisville, Mississippi', 'urlKey': '108154785880124', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Meridian, Mississippi', 'urlKey': '108168579207374', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Southaven, Mississippi', 'urlKey': '104034969634202', 'radius': '20'},
 
-    { 'slot': 'second', 'name': 'Pelham, Alabama', 'urlKey': '104129119623782', 'radius': '80'},
-    { 'slot': 'second', 'name': 'Russellville, Alabama', 'urlKey': '108817435809827', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Hartselle, Alabama', 'urlKey': '108136349208118', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Fort Payne, Alabama', 'urlKey': '108018039221410', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Eutaw, Alabama', 'urlKey': '108052195883580', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Auburn, Alabama', 'urlKey': '108417995849344', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Thomasville, Alabama', 'urlKey': '108217175865346', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Goldsboro, North Carolina', 'urlKey': '108361105854270', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Evergreen, Alabama', 'urlKey': '108466412517561', 'radius': '40'},
-    { 'slot': 'second', 'name': 'Troy, Alabama', 'urlKey': '113096688703739', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Pelham, Alabama', 'urlKey': '104129119623782', 'radius': '80'},
+    // { 'slot': 'second', 'name': 'Russellville, Alabama', 'urlKey': '108817435809827', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Hartselle, Alabama', 'urlKey': '108136349208118', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Fort Payne, Alabama', 'urlKey': '108018039221410', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Eutaw, Alabama', 'urlKey': '108052195883580', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Auburn, Alabama', 'urlKey': '108417995849344', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Thomasville, Alabama', 'urlKey': '108217175865346', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Goldsboro, North Carolina', 'urlKey': '108361105854270', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Evergreen, Alabama', 'urlKey': '108466412517561', 'radius': '40'},
+    // { 'slot': 'second', 'name': 'Troy, Alabama', 'urlKey': '113096688703739', 'radius': '40'},
 
     { 'slot': 'second', 'name': 'Immokalee, Florida', 'urlKey': '103111633062107', 'radius': '100'},
     { 'slot': 'second', 'name': 'Clermont, Florida', 'urlKey': '109263879093610', 'radius': '100'},
