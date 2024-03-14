@@ -1146,6 +1146,15 @@ async function idGotDisabled(){
         await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
     }
 }
+async function idGotTemporarilyBlocked(){
+    if(await localStorageGotId()){
+        // await setCurrentIdDisableWebStorage();
+        await ex_sleep(2000);
+        await setStorageSingleData('ex_id',null);
+        await userLogout();
+        await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
+    }
+}
 async function userLogout(){
     await sendActionTOBackground('userLogout');
 }
@@ -1359,6 +1368,10 @@ async function eventListenerMethods(){
     $('body').on('click','#removeAccount',async function(){
         await idGotDisabled();
     });
+    // idGotTemporarilyBlocked
+    $('body').on('click','#changeAccount',async function(){
+        await idGotTemporarilyBlocked();
+    });
     $('body').on('click','#clearErrorButton',async function(){
         await setStorageSingleData('ex_redirectionMessages',null);
         await showHTMLOnContentConsole('error data cleared');
@@ -1408,6 +1421,7 @@ async function showInitialInputForm(){
     content = '';
     if(ex_switch==null) {content += '<div>Turn on the main switch to start working</div>';}
     content += '<button type="button" class="buttons" id="removeAccount">remove Account</button>';
+    content += '<button type="button" class="buttons" id="changeAccount">change Account</button>';
     content += '<div><input type="text" class="inputFields" id="mainInputuser" value="'+ex_user+'" placeholder="user: silver/red/green/blue"><div>';
     content += '<div><input type="text" class="inputFields" id="mainInputSlot" value="'+ex_slot+'" placeholder="slot: first/second"></div>';
     content += '<div><input type="text" class="inputFields" id="mainInputWorkId" value="'+ex_workId+'" placeholder="workId: 22-3/22-5/23-4..."></div>';
