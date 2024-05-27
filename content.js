@@ -1000,6 +1000,10 @@ async function areaChange(){
         mapConfigurationMilesMainButtonSelector().click();
         await ex_sleep(5000);
         var ex_area = await getStorageSingleData('ex_area');
+        console.log(ex_area.radius)
+        console.log(milesToAreaButtonNumber(ex_area.radius))
+        console.log(mapConfigurationMilesButtonSelector());
+        console.log(mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)]);
         mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)].click();
         console.log(mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)]);
         await ex_sleep(5000);
