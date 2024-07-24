@@ -367,13 +367,15 @@ async function mainProcess(){
     }else{
         if(await isUserLoggedIn()){
             if(await idDisabledCheck()){
-                await idGotDisabled();
+                await showHTMLOnContentConsole('account disabled');
+                // await idGotDisabled();
             }else{
                 await dataCollectionProcess();
             }
         }else{
             if(await idDisabledCheck()){
-                await idGotDisabled();
+                await showHTMLOnContentConsole('account disabled');
+                // await idGotDisabled();
             }else{
                 await userLoginProcess();
             }  
