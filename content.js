@@ -1245,7 +1245,7 @@ async function loginFormVerified(){
     await ex_sleep(5000);
     var email = loginFromEmailInputSelector().prop("tagName").toLowerCase()=='input';
     var pass = loginFromPasswordInputSelector().prop("tagName").toLowerCase()=='input';
-    var submit = loginFromSubmitButtonSelector().prop("tagName")?.toLowerCase()=='button' ||  loginFromSubmitButtonLoginPageSelector.prop("tagName")?.toLowerCase()=='button';
+    var submit = loginFromSubmitButtonSelector().prop("tagName")?.toLowerCase()=='button' ||  loginFromSubmitButtonLoginPageSelector().prop("tagName")?.toLowerCase()=='button';
     return email && pass && submit;
 }
 async function ex_sleep(ms) {
