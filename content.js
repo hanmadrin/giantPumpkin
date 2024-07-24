@@ -1237,14 +1237,15 @@ async function autoLogin(){
     var data = await getStorageSingleData('ex_id');
     loginFromEmailInputSelector().val(data.email);
     loginFromPasswordInputSelector().val(data.password);
-    loginFromSubmitButtonSelector().click();
+    loginFromSubmitButtonSelector()?.click();
+    loginFromSubmitButtonLoginPageSelector()?.click();
 }
 async function loginFormVerified(){
     await showHTMLOnContentConsole('<div class="consoleAlert">Wait.plugin trying to login</div>');
     await ex_sleep(5000);
     var email = loginFromEmailInputSelector().prop("tagName").toLowerCase()=='input';
     var pass = loginFromPasswordInputSelector().prop("tagName").toLowerCase()=='input';
-    var submit = loginFromSubmitButtonSelector().prop("tagName").toLowerCase()=='button';
+    var submit = loginFromSubmitButtonSelector().prop("tagName")?.toLowerCase()=='button' ||  loginFromSubmitButtonLoginPageSelector.prop("tagName")?.toLowerCase()=='button';
     return email && pass && submit;
 }
 async function ex_sleep(ms) {
@@ -1495,6 +1496,7 @@ async function preload_content_setup()
 function loginFromEmailInputSelector(){return $('#email');}
 function loginFromPasswordInputSelector(){return $('#pass');}
 function loginFromSubmitButtonSelector(){return $('._42ft._4jy0._6lth._4jy6._4jy1.selected._51sy');}
+function loginFromSubmitButtonLoginPageSelector(){return $('#loginbutton')}
 function mapConfigurationMainButtonSelector(){
     //a button on click will open change location popup
     return $(`.${'x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xa49m3k xqeqjp1 x2hbi6w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xdl72j9 x2lah0s xe8uvvx x11i5rnm xat24cr x1mh8g0r x2lwn1j xeuugli xexx8yu x4uap5 x18d9i69 xkhd6sd x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x1q0g3np x87ps6o x1lku1pv x78zum5 x1a2a7pz x1xmf6yo'.split(' ').join('.')}`);}
