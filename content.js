@@ -1207,7 +1207,8 @@ async function idDisabledCheck(){
     let ineligible = url.includes('ineligible');
     let wrongPassword = url.includes('privacy_mutation_token');
     let confirmemail = url.includes('confirmemail');
-    return checkpoint || ineligible || wrongPassword ||confirmemail;
+    let deviceBased = url.includes('login/device-based/');
+    return checkpoint || ineligible || wrongPassword ||confirmemail || deviceBased;
 }
 async function userLoginProcess(){
     if(await isCurrentUrlFacebookHomePage()){
