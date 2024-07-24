@@ -1340,7 +1340,7 @@ async function redirectionAllowed(message){
     }
 }
 async function isCurrentUrlFacebookHomePage(){
-    return window.location.href=='https://www.facebook.com/'?true:false;
+    return window.location.href=='https://www.facebook.com/' || window.location.href.includes('https://www.facebook.com/login')?true:false;
 }
 async function isUserLoggedIn(){
     return getCookie('c_user')==''?false:true;
