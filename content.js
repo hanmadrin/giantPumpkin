@@ -997,7 +997,7 @@ async function setEmptyAreaWebDb(){
 async function areaChange(){
     await showHTMLOnContentConsole('<div class="consoleAlert">Wait..plugin changing miles</div>');
     await ex_sleep(10000);
-    var miles = mapConfigurationMainButtonSelector().text().split('·')[1].includes('mile');
+    var miles = mapConfigurationMainButtonSelector().text().split('·')[1].includes(' mi');
     var kilometers = mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometer') || mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometres');
     if(miles){
         console.log('miles');
@@ -1044,6 +1044,7 @@ async function areaChange(){
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
     }else{
+        await showHTMLOnContentConsole('<div class="consoleAlert">km/mi issue</div>');
         throw new Error('miles or kilometers not found');
     }
     
