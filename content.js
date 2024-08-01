@@ -922,7 +922,7 @@ async function areaVerification(){
     var nameOnPage = mapConfigurationMainButtonSelector().text().split('·')[0].trim();
     var nameSupposedTo = ex_area.name;
     var radiusOnPage = mapConfigurationMainButtonSelector().text().split('·')[1].trim();
-    var radiusSupposedTo = 'Within '+ex_area.radius+' miles';
+    var radiusSupposedTo = 'Within '+ex_area.radius+' mi';
     if(radiusOnPage == radiusSupposedTo && nameOnPage == nameSupposedTo)
     {
         ex_area.verified = true;
