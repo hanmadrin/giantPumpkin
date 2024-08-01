@@ -1000,6 +1000,7 @@ async function areaChange(){
     var miles = mapConfigurationMainButtonSelector().text().split('·')[1].includes('mile');
     var kilometers = mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometer') || mapConfigurationMainButtonSelector().text().split('·')[1].includes('kilometres');
     if(miles){
+        console.log('miles');
         mapConfigurationMainButtonSelector().click();
         await ex_sleep(5000);
         mapConfigurationMilesMainButtonSelector().click();
@@ -1014,6 +1015,7 @@ async function areaChange(){
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
     }else if(kilometers){
+        console.log('kilometers');
         mapConfigurationMainButtonSelector().click();
         await ex_sleep(5000);
         mapConfigurationMilesMainButtonSelector().click();
