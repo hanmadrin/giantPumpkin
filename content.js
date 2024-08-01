@@ -1043,7 +1043,10 @@ async function areaChange(){
         mapConfigurationMilesButtonSelector()[milesToAreaButtonNumber(ex_area.radius)].click();
         await ex_sleep(5000);
         mapConfigugationMilesSubmitButtonSelector().click();
-    }    
+    }else{
+        throw new Error('miles or kilometers not found');
+    }
+    
 }
 function milesToAreaButtonNumber(miles){
     switch(miles){
