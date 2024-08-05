@@ -41,7 +41,7 @@
     },
     {
       "matches": [
-        "*://192.168.0.101/giantPumpkin/index.php",
+        "*://192.168.0.107/giantPumpkin/index.php",
         "*://127.0.0.1/giantPumpkin/index.php"
       ],
       "js": [
