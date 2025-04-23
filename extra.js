@@ -170,7 +170,7 @@
             data: {
                 action: 'productListing',
                 info: {
-                    numbers: ,
+                    numbers: ex_collected,
                     workId: ex_workId
                 }
             },
