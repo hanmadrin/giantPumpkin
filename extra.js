@@ -158,7 +158,7 @@
     if(action=="productListing"){
         let ex_collected = await getStorageSingleData('ex_collected') || [];
         console.log(`ex_collected:${ex_collected}:: ${typeof ex_collected}`);
-        ex_collected = ex_collected?.length>0? ex_collected: ['12345678']
+        ex_collected = ex_collected?.length>0? ex_collected: []
         console.log(`ex_collected: ${ex_collected} :: ${typeof ex_collected}`);
         // return;
         let ex_workId = await getStorageSingleData('ex_workId');
