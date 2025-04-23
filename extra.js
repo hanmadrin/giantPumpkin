@@ -167,7 +167,7 @@
             data: {
                 action: 'productListing',
                 info: {
-                    numbers: ex_collected?ex_collected:["123456789"],
+                    numbers: ex_collected || [],
                     workId: ex_workId
                 }
             },
