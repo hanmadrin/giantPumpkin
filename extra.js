@@ -157,7 +157,7 @@
     }
     if(action=="productListing"){
         let ex_collected = await getStorageSingleData('ex_collected') || [];
-        console.log(`ex_collected:${ex_collected}:: ${typeof ex_collected} ${ex_collected==null} ${ex_collected==undefined}`);
+        console.log(`ex_collected:${ex_collected}:: ${typeof ex_collected} ${ex_collected?.length>0}`);
         return;
         ex_collected = ex_collected!=null? ['ss']:['ss'];
         console.log(`ex_collected: ${ex_collected} :: ${typeof ex_collected}`);
