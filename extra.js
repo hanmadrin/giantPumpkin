@@ -157,10 +157,10 @@
     }
     if(action=="productListing"){
         let ex_collected = await getStorageSingleData('ex_collected') || [];
-        console.log(`ex_collected:${ex_collected}:: ${typeof ex_collected} ${ex_collected?.length>0}`);
-        return;
-        ex_collected = ex_collected!=null? ['ss']:['ss'];
+        console.log(`ex_collected:${ex_collected}:: ${typeof ex_collected} ${}`);
+        ex_collected = ex_collected?.length>0? []: ex_collected
         console.log(`ex_collected: ${ex_collected} :: ${typeof ex_collected}`);
+        return;
         let ex_workId = await getStorageSingleData('ex_workId');
         let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
         await $.ajax({
@@ -170,7 +170,7 @@
             data: {
                 action: 'productListing',
                 info: {
-                    numbers: ex_collected,
+                    numbers: ,
                     workId: ex_workId
                 }
             },
