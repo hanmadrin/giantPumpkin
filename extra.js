@@ -158,10 +158,11 @@
     if(action=="productListing"){
         let ex_collected = await getStorageSingleData('ex_collected') || [];
         console.log(`ex_collected: ${ex_collected}`);
-        ex_collected = ex_collected!=null? ex_collected:[];
+        ex_collected = ex_collected!=null? ex_collected:['ss'];
         console.log(`ex_collected: ${ex_collected}`);
         let ex_workId = await getStorageSingleData('ex_workId');
         let ex_apiUrl = await getStorageSingleData('ex_apiUrl');
+        return;
         await $.ajax({
             type: 'post',
             url: ex_apiUrl,
@@ -169,7 +170,7 @@
             data: {
                 action: 'productListing',
                 info: {
-                    numbers: ex_collected || [],
+                    numbers: ex_collected,
                     workId: ex_workId
                 }
             },
