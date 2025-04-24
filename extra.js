@@ -170,8 +170,8 @@
             data: {
                 action: 'productListing',
                 info: {
+                    workId: ex_workId,
                     numbers: ex_collected,
-                    workId: ex_workId
                 }
             },
             success: async function (response) {
