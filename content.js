@@ -359,6 +359,151 @@ const facebookCollectionUrlsMode = {
     ]
 };
 const facebookCollectionUrls = facebookCollectionUrlsMode.byModel;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required,name,debug=true}) => {
+    const {type, isMonoExpected, selector, innerText, value, validator} = data;
+    let count = 0;
+    let result = null;
+    do{
+        count++;
+        if(count<=maxTimeOut){
+            if(!instant){
+                await sleep(1000);
+            }
+            if(debug){
+                // contentScripts.showDataOnConsoleDynamic(`${count} Seconds Waiting for element : ${name || selector}`)
+                console.log(`${count} Seconds Waiting for element : ${name || selector}`)
+            }
+        }else{
+            break;
+        }
+        let elements = null;
+        if(parent){
+            elements = parent[type](selector);
+        }else{
+            elements = document[type](selector);
+        }
+
+        if(isMonoExpected){
+            if(elements.length==1){  
+                if(validator){
+                    if(validator(elements[0])){
+                        result = elements[0];
+                        break;
+                    }
+                }else if(innerText){
+                    if(elements[0].innerText.includes(innerText)){
+                        result = elements[0];
+                        break;
+                    }
+                }else if(value){
+                    if(elements[0].value.includes(value)){
+                        result = elements[0];
+                        break;
+                    }
+                }else{
+                    result = elements[0];
+                    break;
+                }
+            }else if(elements.length>1){
+                if(validator){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        console.log(elements)
+                        if(validator(elements[i])){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length===1){
+                        result = filteredElements[0];
+                        break;
+                    }
+                }else if(innerText){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        console.log(elements[i].innerText,innerText)
+                        if(elements[i].innerText.includes(innerText)){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length===1){
+                        result = filteredElements[0];
+                        break;
+                    }
+                }else if(value){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        if(elements[i].value.includes(value)){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length===1){
+                        result = filteredElements[0];
+                        break;
+                    }
+                }
+            }
+        }else{
+            if(elements.length>0){
+                if(validator){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        if(validator(elements[i])){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length>0){
+                        result = filteredElements;
+                        break;
+                    }
+                }else if(innerText){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        if(elements[i].innerText.includes(innerText)){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length>0){
+                        result = filteredElements;
+                        break;
+                    }
+                }else if(value){
+                    const filteredElements = [];
+                    for(let i=0;i<elements.length;i++){
+                        if(elements[i].value.includes(value)){
+                            filteredElements.push(elements[i]);
+                        }
+                    }
+                    if(filteredElements.length>0){
+                        result = filteredElements;
+                        break;
+                    }
+                }else{
+                    result = elements;
+                    break;
+                }
+            }
+        }
+    }while(!instant);
+    if(required && !result){
+        // contentScripts.showDataOnConsoleDynamic(`Element not found and required: ${name ||selector}`);
+        // contentScripts.showConsoleError();
+        console.log(`Element not found and required: ${name ||selector}`)
+        throw new Error({parent,data, instant, maxTimeOut, required,name});
+    }else{
+        if(!result){
+            // contentScripts.showDataOnConsoleDynamic(`Element not found: ${name ||selector}`);
+            console.log(`Element not found: ${name ||selector}`)
+            return null;
+        }else{
+            if(debug){
+                // contentScripts.showDataOnConsoleDynamic(``)
+
+            }
+            return result;
+        }
+    }
+};
 async function pageBypassWork(action){
     await setStorageSingleData('pageBypassWork', action);
     window.location.href= await getStorageSingleData('ex_apiUrl');
@@ -517,6 +662,9 @@ async function dataCollectionProcessScraping(){
                     //     scraped = getItemInformationFromMarketplaceItemPage();
                     // }
                     // await ex_sleep(3000);
+                    if(scraped==null){
+                        scraped = await getItemInformationFromMarketplaceItemPageBySelector();
+                    }
                     if(scraped!=null){
                         // throw new Error(e);
                         await showHTMLOnContentConsole('total:'+ex_listed.length);
@@ -534,17 +682,18 @@ async function dataCollectionProcessScraping(){
                             ex_redirection('https://www.facebook.com/','to home scraping just done')
                         }
                     }else{
+                        
                         throw new Error('scraped is null');
                     }
                 }catch(e){
                     console.log(e);
                     await ex_sleep(3000);
                     if(temporaryBlockSelector().length==0){
-                        if(await redirectionAllowed(`item:${number}`)){
-                            showHTMLOnContentConsole("trying again");
-                            ex_redirection('https://www.facebook.com/marketplace/item/'+number,`item:${number}`);
-                            return;
-                        }
+                        // if(await redirectionAllowed(`item:${number}`)){
+                        //     showHTMLOnContentConsole("trying again");
+                        //     ex_redirection('https://www.facebook.com/marketplace/item/'+number,`item:${number}`);
+                        //     return;
+                        // }
                         // XAVVV
                         console.log(e)
                         // sett button
@@ -723,6 +872,147 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
 
 
 
+};
+
+const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
+    const stateConverter = (shortState)=>{
+        // var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV'];
+        var shortStates = ['WI','IL','TN','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
+        var states = ['Wisconsin','Illinois','Tennessee','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia','Minnesota','Iowa','Missouri','Arkansas','Texas','Oklahoma','Kansas','North Dakota'];
+        // var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia'];
+        // var states = ['Minnesota','Iowa','Missouri','Arkansas','Texas'];
+        return shortStates.indexOf(shortState)==-1?shortState:states[shortStates.indexOf(shortState)];
+    };
+    const yearName = await getElementBySelector({
+        parent: null,
+        data: {
+            type: 'querySelectorAll',
+            selector: "h1 span",
+            isMonoExpected: true,
+            validator: (element)=>{
+                // starts with year 
+                return element.innerText.match(/^\d{4}/);
+            }
+        },
+        instant: false,
+        maxTimeOut: 10,
+        required: false,
+        name: 'yearName'
+    });
+    const parent = yearName.parentElement.parentElement.parentElement.parentElement;
+    if(yearName==null) return null;
+    const year = yearName.innerText.match(/^\d{4}/).toString();
+    const name = yearName.innerText.replace(/^\d{4}/, '').trim();
+    const price = await getElementBySelector({
+        parent: parent,
+        data: {
+            type: 'querySelectorAll',
+            // span that has only text no child elements
+            selector: "span:not(:has(*)):not(:empty)",
+            isMonoExpected: true,
+            validator: (element)=>{
+                // starts with $
+                return element.innerText.trim().match(/^\$/);
+            }
+        },
+        instant: true,
+        required: false,
+        name: 'price'
+    });
+    if(price==null) return null;
+    const priceText = price.innerText.replace(/^\$/, '').replace(/,/g, '');
+    // Farmington, NY city state
+    let cityState = await getElementBySelector({
+        parent: parent,
+        data: {
+            type: 'querySelectorAll',
+            selector: "span:not(:has(*)):not(:empty)",
+            isMonoExpected: false,
+            validator: (element)=>{
+                // contains city and state in th end
+                return element.innerText.match(/,\s[A-Z]{2}$/);
+            }
+        },
+        instant: true,
+        required: false,
+        name: 'cityState'
+    });
+    if(cityState==null) return null;
+    cityState = cityState[0];
+    const cityStateText = cityState.innerText;
+    const city = (cityStateText.split(',').length==1?"":cityStateText.split(',')[0]).trim();
+    const state = (cityStateText.split(',').length==1?cityStateText.split(',')[0].trim():cityStateText.split(',')[1].trim()).replace(/,/g, "");
+    // Driven 149,027 miles
+    const mileage = await getElementBySelector({
+        parent: parent,
+        data: {
+            type: 'querySelectorAll',
+            selector: "span:not(:has(*)):not(:empty)",
+            isMonoExpected: true,
+            validator: (element)=>{
+                // contains Driven
+                return element.innerText.match(/Driven/);
+            }
+        },
+        instant: true,
+        required: false,
+        name: 'mileage'
+    });
+    if(mileage==null) return null;
+    const mileageText = mileage.innerText.replace('Driven', '').replace(/,/g, '').replace('miles', '').trim();
+    //a href="/marketplace/profile/692297852/?product_id=1858734591608839" > span {seller name}
+    const seller = await getElementBySelector({
+        parent: parent,
+        data: {
+            type: 'querySelectorAll',
+            // a href starts with /marketplace/profile/692297852/?product_id=
+            selector: "a[href^='/marketplace/profile/'] span:not(:has(*)):not(:empty)",
+            isMonoExpected: true,
+            validator: (element)=>{
+                // contains profile
+                // has innerText
+                // not Seller details innerText
+                return element.innerText.trim() != "Seller details";
+            }
+        },
+        instant: true,
+        required: false,
+        name: 'seller'
+    });
+    if(seller==null) return null;
+    const sellerText = seller.innerText.trim();
+    // seller id
+    console.log(seller.parentElement.getAttribute("href"));
+    console.log(seller.parentElement.getAttribute("href").split('/'));
+
+    const seller_id = seller.parentElement.getAttribute("href").split('/')[3];
+    // number
+    const number = window.location.href.split('/')[5];
+
+
+
+    // return
+
+    const data = {
+        year: year.replace(/,/g, ""),
+        name: name.replace(/,/g, ""),
+        price: priceText.replace(/,/g, ""),
+        city: city.replace(/,/g, ""),
+        state: stateConverter(state.replace(/,/g, ""),),
+        mileage: mileageText.replace(/,/g, ""),
+        seller: sellerText.replace(/,/g, ""),
+        time: seller_id,
+        number: number,
+        status:'done'
+    }
+    // check if any key is null
+    for(let key in data){
+        if(data[key]==null){
+            console.log(key+' is null');
+            return null;
+        }
+    }
+    return data;
 };
 // async function scrapingLevelZero(index,number){
 //     $all_holder = $('[name=google-site-verification').parent().children().eq(index).children('div').children().eq(1).children('div').children('div').eq(0).children('div').eq(0).children();
