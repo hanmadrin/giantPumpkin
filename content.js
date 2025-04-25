@@ -881,6 +881,7 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         // var states = ['Minnesota','Iowa','Missouri','Arkansas','Texas'];
         return shortStates.indexOf(shortState)==-1?shortState:states[shortStates.indexOf(shortState)];
     };
+
     const yearName = await getElementBySelector({
         parent: null,
         data: {
@@ -897,8 +898,29 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         required: false,
         name: 'yearName'
     });
-    const parent = yearName.parentElement.parentElement.parentElement.parentElement;
+    const soldElm = await getElementBySelector({
+        parent: null,
+        data: {
+            type: 'querySelectorAll',
+            selector: "h1 span",
+            isMonoExpected: true,
+            validator: (element)=>{
+                // starts with year 
+                return element.innerText.trim() == "Sold";
+            }
+        },
+        instant: true,
+        required: false,
+        name: 'isSold'
+    })
+    if(soldElm){
+        return {
+            status: "skip"
+        }
+    }
     if(yearName==null) return null;
+    
+    const parent = yearName.parentElement.parentElement.parentElement.parentElement;
     const year = yearName.innerText.match(/^\d{4}/).toString();
     const name = yearName.innerText.replace(/^\d{4}/, '').trim();
     const price = await getElementBySelector({
