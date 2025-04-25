@@ -654,13 +654,11 @@ async function dataCollectionProcessScraping(){
             if(window.location.href=='https://www.facebook.com/marketplace/item/'+number){
                 try{
                     showHTMLOnContentConsole('scraping item:'+number);
-                    // try{
+                    try{
                         scraped = getItemInformationFromMarketplaceItemPage();
-                    // }catch(e){
-                    //     showHTMLOnContentConsole('scraping again');
-                    //     await ex_sleep(10000);
-                    //     scraped = getItemInformationFromMarketplaceItemPage();
-                    // }
+                    }catch(e){
+                        scraped = null;
+                    }
                     // await ex_sleep(3000);
                     if(scraped==null){
                         scraped = await getItemInformationFromMarketplaceItemPageBySelector();
