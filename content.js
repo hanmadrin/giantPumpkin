@@ -654,6 +654,8 @@ async function dataCollectionProcessScraping(){
             if(window.location.href=='https://www.facebook.com/marketplace/item/'+number){
                 try{
                     showHTMLOnContentConsole('scraping item:'+number);
+                    await showHTMLOnContentConsole('total:'+ex_listed.length);
+                    await showHTMLOnContentConsole('current:'+currentIndex);
                     try{
                         scraped = getItemInformationFromMarketplaceItemPage();
                     }catch(e){
@@ -665,8 +667,7 @@ async function dataCollectionProcessScraping(){
                     }
                     if(scraped!=null){
                         // throw new Error(e);
-                        await showHTMLOnContentConsole('total:'+ex_listed.length);
-                        await showHTMLOnContentConsole('current:'+currentIndex);
+                        
                         ex_listed[currentIndex] = scraped;
                         await setStorageSingleData('ex_listed',ex_listed);
                         currentIndex = await currentScrapingIndex();
