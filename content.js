@@ -715,6 +715,7 @@ async function dataCollectionProcessScraping(){
                             console.log('skipping all items');
                             await skipRestProductScraping();
                         })
+                        dataConsole.append(skipAllButton);
                         throw new Error(e);
 
                         await skipCurrentProductScraping();
