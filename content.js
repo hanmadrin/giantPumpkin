@@ -873,6 +873,7 @@ const getItemInformationFromMarketplaceItemPage = ()=>{
 };
 
 const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
+    document.getElementById("ex_console_div").style.backgroundColor = "green";
     const stateConverter = (shortState)=>{
         // var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV'];
         var shortStates = ['WI','IL','TN','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
