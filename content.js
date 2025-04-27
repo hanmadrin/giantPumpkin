@@ -987,7 +987,7 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         data: {
             type: 'querySelectorAll',
             // a href starts with /marketplace/profile/692297852/?product_id=
-            selector: "a[href^='/marketplace/profile/'] span:not(:has(*)):not(:empty)",
+            selector: "a[href^='/marketplace/profile/']>span:not(:has(*)):not(:empty)",
             isMonoExpected: true,
             validator: (element)=>{
                 // contains profile
