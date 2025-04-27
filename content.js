@@ -409,7 +409,7 @@ const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required
                 if(validator){
                     const filteredElements = [];
                     for(let i=0;i<elements.length;i++){
-                        console.log(elements)
+                        // console.log(elements)
                         if(validator(elements[i])){
                             filteredElements.push(elements[i]);
                         }
@@ -421,7 +421,7 @@ const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required
                 }else if(innerText){
                     const filteredElements = [];
                     for(let i=0;i<elements.length;i++){
-                        console.log(elements[i].innerText,innerText)
+                        // console.log(elements[i].innerText,innerText)
                         if(elements[i].innerText.includes(innerText)){
                             filteredElements.push(elements[i]);
                         }
@@ -706,6 +706,15 @@ async function dataCollectionProcessScraping(){
                             await skipCurrentProductScraping();
                         });
                         dataConsole.append(button);
+                        // skip rest
+                        const skipAllButton = document.createElement('button');
+                        skipAllButton.innerText = 'Skip Rest';
+                        skipAllButton.id = 'ex_skip_rest_button';
+                        skipAllButton.style = 'background-color: #4CAF50; /* Green */border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;';
+                        skipAllButton.addEventListener('click',async function(){
+                            console.log('skipping all items');
+                            await skipRestProductScraping();
+                        })
                         throw new Error(e);
 
                         await skipCurrentProductScraping();
@@ -972,6 +981,7 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
             selector: "span:not(:has(*)):not(:empty)",
             isMonoExpected: true,
             validator: (element)=>{
+                console.log(element)
                 // contains Driven
                 return element.innerText.match(/Driven/);
             }
@@ -1131,6 +1141,17 @@ async function skipCurrentProductScraping(){
         }
     }
     await ex_redirection('https://www.facebook.com/','to home page just skipped an item');
+}
+async function skipRestProductScraping(){
+    var ex_listed = await getStorageSingleData('ex_listed');
+    var total = ex_listed.length;
+    for(i=0;i<total;i++){
+        if(ex_listed[i].status==''){
+            ex_listed[i].status = 'skip';
+        }
+    }
+    await setStorageSingleData('ex_listed',ex_listed);
+    await ex_redirection('https://www.facebook.com/','to home page just skipped all items');
 }
 async function isUrlIncludesUnavailavle(){
     return window.location.href.includes('unavailable_product');
