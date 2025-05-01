@@ -924,12 +924,12 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         return shortStates.indexOf(shortState)==-1?shortState:states[shortStates.indexOf(shortState)];
     };
 
-    const yearName = await getElementBySelector({
+    let yearName = await getElementBySelector({
         parent: null,
         data: {
             type: 'querySelectorAll',
             selector: "h1 span",
-            isMonoExpected: true,
+            isMonoExpected: false,
             validator: (element)=>{
                 // starts with year 
                 return element.innerText.match(/^\d{4}/);
@@ -940,6 +940,9 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         required: false,
         name: 'yearName'
     });
+    if(yearName?.length >1){
+        yearName = yearName[0]
+    }
     const soldElm = await getElementBySelector({
         parent: null,
         data: {
