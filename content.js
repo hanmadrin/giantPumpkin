@@ -574,8 +574,8 @@ async function temporaryBlockCheck(){
         // stop program propagation and wait 1 hour then refresh the page
         const totalWaitingMinutes = 60;
         for(let i=0;i<totalWaitingMinutes;i++){
-            await ex_sleep(1000*60);
             showDataOnConsoleDynamic(`Temporary Blocked for ${i+1}/${totalWaitingMinutes} minutes`);
+            await ex_sleep(1000*60);
         }
         showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingMinutes} MINUTES`);
         window.location.reload();
