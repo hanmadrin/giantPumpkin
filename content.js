@@ -940,9 +940,7 @@ const getItemInformationFromMarketplaceItemPageBySelector = async ()=>{
         required: false,
         name: 'yearName'
     });
-    if(yearName?.length >1){
-        yearName = yearName[0]
-    }
+    yearName = yearName[0]
     const soldElm = await getElementBySelector({
         parent: null,
         data: {
