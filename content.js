@@ -572,12 +572,17 @@ async function temporaryBlockCheck(){
     });
     if(isTemporaryBlocked){
         // stop program propagation and wait 1 hour then refresh the page
-        const totalWaitingMinutes = 60;
-        for(let i=0;i<totalWaitingMinutes;i++){
-            showDataOnConsoleDynamic(`Temporary Blocked for ${i+1}/${totalWaitingMinutes} minutes`);
-            await ex_sleep(1000*60);
+        const totalWaitingSeconds = 3600;
+        // for(let i=0;i<totalWaitingMinutes;i++){
+        //     showDataOnConsoleDynamic(`Temporary Blocked for ${i+1}/${totalWaitingMinutes} minutes`);
+        //     await ex_sleep(1000*60);
+        // }
+        // showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingMinutes} MINUTES`);
+        for(let i=0;i<totalWaitingSeconds;i++){
+            await showHTMLOnContentConsole(`Temporary Blocked for ${i+1}/${totalWaitingSeconds} seconds`);
+            await ex_sleep(1000);
         }
-        showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingMinutes} MINUTES`);
+        await showHTMLOnContentConsole(`DONE WAITING FOR ${totalWaitingSeconds} SECONDS`);
         window.location.reload();
         await ex_sleep(1000*60*5);
     }
