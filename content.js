@@ -579,10 +579,10 @@ async function temporaryBlockCheck(){
         // }
         // showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingMinutes} MINUTES`);
         for(let i=0;i<totalWaitingSeconds;i++){
-            await showHTMLOnContentConsole(`Temporary Blocked for ${i+1}/${totalWaitingSeconds} seconds`);
+            showDataOnConsoleDynamic(`Temporary Blocked for ${i+1}/${totalWaitingSeconds} seconds`);
             await ex_sleep(1000);
         }
-        await showHTMLOnContentConsole(`DONE WAITING FOR ${totalWaitingSeconds} SECONDS`);
+        showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingSeconds} SECONDS`);
         window.location.reload();
         await ex_sleep(1000*60*5);
     }
