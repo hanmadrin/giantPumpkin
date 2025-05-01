@@ -558,7 +558,32 @@ async function mainProcess(){
         }
     }
 }
+async function temporaryBlockCheck(){
+    const isTemporaryBlocked  = await getElementBySelector({
+        data: {
+            type: 'querySelectorAll',
+            selector: "h2 span:not(:has(*)):not(:empty)",
+            isMonoExpected: false,
+            innerText: 'You’re Temporarily Blocked',
+        },
+        instant: true,
+        required: false,
+        name: 'temporaryBlockCheck'
+    });
+    if(isTemporaryBlocked){
+        // stop program propagation and wait 1 hour then refresh the page
+        const totalWaitingMinutes = 60;
+        for(let i=0;i<totalWaitingMinutes;i++){
+            await ex_sleep(1000*60);
+            showDataOnConsoleDynamic(`Temporary Blocked for ${i+1}/${totalWaitingMinutes} minutes`);
+        }
+        showDataOnConsoleDynamic(`DONE WAITING FOR ${totalWaitingMinutes} MINUTES`);
+        window.location.reload();
+        await ex_sleep(1000*60*5);
+    }
+}
 async function dataCollectionProcess(){
+    await temporaryBlockCheck();
     if(!await localStorageGotArea()){
         const action = await getStorageSingleData('pageBypassWork');
         if(action!='workCompleted'){
@@ -1813,6 +1838,11 @@ async function showHTMLOnContentConsole(content){
     $('#ex_console_div').append('<div>'+content+'</div>');
     document.getElementById("ex_console_div").scrollTop = document.getElementById("ex_console_div").scrollHeight+1000;
 }
+function showDataOnConsoleDynamic(data){
+    const consoleBoardDynamic = document.getElementById('dynamic_section');
+    consoleBoardDynamic.innerText = data;
+    console.log(data);
+}
 async function showInitialInputForm(){
     var initialDatas = await getInitialStorageDatas();
     var ex_switch = initialDatas['ex_switch'];
@@ -1851,7 +1881,7 @@ async function setStorageSingleData(name,value) {
 }
 async function preload_content_setup()
 {
-    $('body').prepend('<div id="ex_console_div"></div>')
+    $('body').prepend('<div id="ex_console_div"><div id="dynamic_section"></div></div>')
     dragElement(document.getElementById("ex_console_div"));
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
