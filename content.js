@@ -358,7 +358,7 @@ const facebookCollectionUrlsMode = {
         "https://www.facebook.com/marketplace/category/volkswagen/?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ]
 };
-const facebookCollectionUrls = facebookCollectionUrlsMode.byModel;
+const facebookCollectionUrls = facebookCollectionUrlsMode.single;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required,name,debug=true}) => {
     const {type, isMonoExpected, selector, innerText, value, validator} = data;
