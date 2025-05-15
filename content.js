@@ -358,8 +358,9 @@ const facebookCollectionUrlsMode = {
         "https://www.facebook.com/marketplace/category/volkswagen/?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ]
 };
-const getCollectionMode = async ()=>{
-    return await getStorageSingleData('ex_mode')||"all";
+const getCollectionModeUrls = async ()=>{
+   const collectionMode =  await getStorageSingleData('ex_mode')||"all";
+   return facebookCollectionUrls[collectionMode];
 }
 const facebookCollectionUrls = facebookCollectionUrlsMode.all;
 
@@ -592,7 +593,7 @@ async function temporaryBlockCheck(){
     }
 }
 async function dataCollectionProcess(){
-    const facebookCollectionUrls = await getCollectionMode();
+    const facebookCollectionUrls = await getCollectionModeUrls();
     await temporaryBlockCheck();
     if(!await localStorageGotArea()){
         const action = await getStorageSingleData('pageBypassWork');
@@ -1228,7 +1229,7 @@ async function dataCollectionProcessListing(){
     // });
 }
 async function dataCollectionProcessCollection(){
-    const facebookCollectionUrls = await getCollectionMode();
+    const facebookCollectionUrls = await getCollectionModeUrls();
     if(await isCollectingPageUrl()){
         const alreadyCollected = await getStorageSingleData('ex_collected');
         let currentLocationIndex = await getStorageSingleData('currentLocationIndex');
@@ -1245,7 +1246,7 @@ async function dataCollectionProcessCollection(){
     }
 }
 async function collectDataFromPage(){
-    const facebookCollectionUrls = await getCollectionMode();
+    const facebookCollectionUrls = await getCollectionModeUrls();
     try{
         //    var items = $('#ssrb_feed_start').parent().children('div').children().last().children().children().last().children();
         let items = document.querySelectorAll('[href^="/marketplace/item"]'); 
@@ -1331,7 +1332,7 @@ async function scrollPage(){
     console.log('scrolling done');
 }
 async function isCollectingPageUrl(){
-    const facebookCollectionUrls = await getCollectionMode();
+    const facebookCollectionUrls = await getCollectionModeUrls();
     return (facebookCollectionUrls.indexOf(window.location.href)!=-1)
 }
 async function collectingPageUrl(){
