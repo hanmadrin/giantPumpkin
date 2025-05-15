@@ -1869,6 +1869,7 @@ async function showInitialInputForm(){
     content += '<button type="button" class="buttons" id="changeAccount">change Account</button>';
     content += '<div><input type="text" class="inputFields" id="mainInputuser" value="'+ex_user+'" placeholder="user: silver/red/green/blue"><div>';
     content += '<div><input type="text" class="inputFields" id="mainInputSlot" value="'+ex_slot+'" placeholder="slot: first/second"></div>';
+    content += '<div><input type="text" class="inputFields" id="mainInputMode" value="'+ex_mode+'" placeholder="mode: all/byModel"></div>';
     content += '<div><input type="text" class="inputFields" id="mainInputWorkId" value="'+ex_workId+'" placeholder="workId: 22-3/22-5/23-4..."></div>';
     content += '<div><input type="text" class="inputFields" id="mainInputApiUrl" value="'+ex_apiUrl+'" placeholder="http://192.168.0.101:8080/giantPumpkin/index.php"></div>';
     content += '<button type="button" class="buttons" id="mainButtonSubmit">Save Data</button>';
