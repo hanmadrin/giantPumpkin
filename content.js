@@ -360,7 +360,7 @@ const facebookCollectionUrlsMode = {
 };
 const getCollectionModeUrls = async ()=>{
    const collectionMode =  await getStorageSingleData('ex_mode')||"all";
-   return facebookCollectionUrls[collectionMode];
+   return facebookCollectionUrlsMode[collectionMode];
 }
 const facebookCollectionUrls = facebookCollectionUrlsMode.all;
 
