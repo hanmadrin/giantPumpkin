@@ -332,7 +332,7 @@ const facebookCollectionUrlsOld = [
 // only makes
 // Buick,Chevrolet,Chrysler,Dodge,Fiat,Ford,GMC,Honda,Hyundai,Jeep,Kia,Lincoln,Mazda,Mitsubishi,Nissan,Ram,Scion,Smart,Subaru,Toyota,Volkswagen"
 const facebookCollectionUrlsMode = {
-    single: [
+    all: [
         "https://www.facebook.com/marketplace/category/vehicles?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ],
     byModel: [
@@ -358,7 +358,10 @@ const facebookCollectionUrlsMode = {
         "https://www.facebook.com/marketplace/category/volkswagen/?minPrice=5000&maxPrice=45000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ]
 };
-const facebookCollectionUrls = facebookCollectionUrlsMode.single;
+const getCollectionMode = async ()=>{
+
+}
+const facebookCollectionUrls = facebookCollectionUrlsMode.all;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required,name,debug=true}) => {
     const {type, isMonoExpected, selector, innerText, value, validator} = data;
@@ -1562,9 +1565,10 @@ async function notReadyToGo(){
     var ex_switch = initialDatas['ex_switch'];
     var ex_user = initialDatas['ex_user'];
     var ex_slot = initialDatas['ex_slot'];
+    var ex_mode = initialDatas['ex_mode'];
     var ex_workId = initialDatas['ex_workId'];
     var ex_apiUrl = initialDatas['ex_apiUrl'];
-    return (!ex_switch || !ex_user || !ex_slot || !ex_workId || !ex_apiUrl)
+    return (!ex_switch || !ex_user || !ex_slot || !ex_workId || !ex_apiUrl || !ex_mode)
 }
 async function idGotDisabled(){
     if(await localStorageGotId()){
@@ -1789,10 +1793,12 @@ async function eventListenerMethods(){
     $('body').on('click','#mainButtonSubmit',async function(){
         var ex_user = $('#mainInputuser').val();
         var ex_slot = $('#mainInputSlot').val();
+        var ex_mode = $('#mainInputMode').val();
         var ex_workId = $('#mainInputWorkId').val();
         var ex_apiUrl = $('#mainInputApiUrl').val();
         await setStorageSingleData('ex_user',ex_user);
         await setStorageSingleData('ex_slot',ex_slot);
+        await setStorageSingleData('ex_mode',ex_mode);
         await setStorageSingleData('ex_workId',ex_workId);
         await setStorageSingleData('ex_apiUrl',ex_apiUrl);
         await showHTMLOnContentConsole('data saved');
@@ -1854,6 +1860,7 @@ async function showInitialInputForm(){
     var ex_switch = initialDatas['ex_switch'];
     var ex_user = initialDatas['ex_user'];
     var ex_slot = initialDatas['ex_slot'];
+    var ex_mode = initialDatas['ex_mode']
     var ex_workId = initialDatas['ex_workId'];
     var ex_apiUrl = initialDatas['ex_apiUrl'];
     content = '';
@@ -1869,8 +1876,8 @@ async function showInitialInputForm(){
 }
 async function getInitialStorageDatas(){
     return new Promise((resolve,reject)=>{
-        chrome.storage.local.get(['ex_switch','ex_user','ex_slot','ex_workId','ex_apiUrl'], function (result) {
-            resolve({'ex_switch':result['ex_switch'],'ex_apiUrl':result['ex_apiUrl'],'ex_user':result['ex_user'],'ex_slot':result['ex_slot'],'ex_workId':result['ex_workId'],});
+        chrome.storage.local.get(['ex_switch','ex_user','ex_mode','ex_slot','ex_workId','ex_apiUrl'], function (result) {
+            resolve({'ex_switch':result['ex_switch'],'ex_apiUrl':result['ex_apiUrl'],'ex_user':result['ex_user'],'ex_mode':result['ex_mode'],'ex_slot':result['ex_slot'],'ex_workId':result['ex_workId'],});
         });
     })
 }
