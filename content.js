@@ -359,9 +359,10 @@ const facebookCollectionUrlsMode = {
     ]
 };
 const getCollectionMode = async ()=>{
-
+    return await getStorageSingleData('ex_mode')||"all";
 }
 const facebookCollectionUrls = facebookCollectionUrlsMode.all;
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const getElementBySelector= async ({parent,data, instant, maxTimeOut=1, required,name,debug=true}) => {
     const {type, isMonoExpected, selector, innerText, value, validator} = data;
@@ -591,6 +592,7 @@ async function temporaryBlockCheck(){
     }
 }
 async function dataCollectionProcess(){
+    const facebookCollectionUrls = await getCollectionMode();
     await temporaryBlockCheck();
     if(!await localStorageGotArea()){
         const action = await getStorageSingleData('pageBypassWork');
@@ -1226,6 +1228,7 @@ async function dataCollectionProcessListing(){
     // });
 }
 async function dataCollectionProcessCollection(){
+    const facebookCollectionUrls = await getCollectionMode();
     if(await isCollectingPageUrl()){
         const alreadyCollected = await getStorageSingleData('ex_collected');
         let currentLocationIndex = await getStorageSingleData('currentLocationIndex');
@@ -1242,6 +1245,7 @@ async function dataCollectionProcessCollection(){
     }
 }
 async function collectDataFromPage(){
+    const facebookCollectionUrls = await getCollectionMode();
     try{
         //    var items = $('#ssrb_feed_start').parent().children('div').children().last().children().children().last().children();
         let items = document.querySelectorAll('[href^="/marketplace/item"]'); 
@@ -1327,6 +1331,7 @@ async function scrollPage(){
     console.log('scrolling done');
 }
 async function isCollectingPageUrl(){
+    const facebookCollectionUrls = await getCollectionMode();
     return (facebookCollectionUrls.indexOf(window.location.href)!=-1)
 }
 async function collectingPageUrl(){
