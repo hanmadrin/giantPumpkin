@@ -1313,19 +1313,19 @@ async function scrollPage(){
     // while(listingEndingDefineSelector().length!=0){
     while(true){
         totalTry++;
-        if(temporaryBlockCrossSelector().length!=0){
-            temporaryBlockCrossSelector().click();
-            attemptCount++;
-            if(attemptCount>10){
-                await setStorageSingleData('ex_id',null);
-                await userLogout();
-                await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
-                await ex_sleep(2000);
-            }
-        }
+        // if(temporaryBlockCrossSelector().length!=0){
+        //     temporaryBlockCrossSelector().click();
+        //     attemptCount++;
+        //     if(attemptCount>10){
+        //         await setStorageSingleData('ex_id',null);
+        //         await userLogout();
+        //         await ex_redirection('https://www.facebook.com/','redirect to homepage for logout disabled');
+        //         await ex_sleep(2000);
+        //     }
+        // }
         document.documentElement.scrollTop+=1000;
-        await ex_sleep(300);
-        if(totalTry>35){
+        await ex_sleep(1000);
+        if(totalTry>300){
             break;
         }
     }
