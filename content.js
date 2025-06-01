@@ -336,26 +336,48 @@ const facebookCollectionUrlsMode = {
         "https://www.facebook.com/marketplace/category/vehicles?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ],
     byModel: [
-        "https://www.facebook.com/marketplace/category/buick/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/chevrolet/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/chrysler/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/dodge/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/fiat/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/ford/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/gmc/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/honda/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/hyundai/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/jeep/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/kia/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/lincoln/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/mazda/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/mitsubishi/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/nissan/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/ram/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/scion/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/subaru/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/toyota/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
-        "https://www.facebook.com/marketplace/category/volkswagen/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
+        // buick
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=436791410393181",
+        // Chevrolet
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=1914016008726893",
+        // Chrysler
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=398368117562414",
+        // Dodge
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=402915273826151",
+        // Fiat
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=973850736337551",
+        // Ford
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=297354680962030",
+        // GMC
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=304317923578325",
+        // Honda
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=308436969822020",
+        // Hyundai
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=590755841400441",
+        // Jeep
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=408221723080125",
+        // Kia
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=417670842327686",
+        // Lincoln
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=1928095167294293",
+        // Mazda
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=410067716491465",
+        // Mitsubishi
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=343841119808433",
+        // Nissan
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=2621742507840619",
+        // Ram
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=262465364692582",
+        // Scion
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=1546786558785480",
+        // smart
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=573131263170521",
+        // Subaru
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=2571870739551112",
+        // Toyota
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=2318041991806363",
+        // Volkswagen
+        "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=523665818157652",
     ]
 };
 const getCollectionModeUrls = async ()=>{
@@ -1307,9 +1329,13 @@ async function isSpecifiedState(shortForm){
     return (states.indexOf(shortForm)==-1)?false:true;
 }
 async function scrollPage(){
+
     await ex_sleep(5000);
     var attemptCount = 0;
     let totalTry = 0;
+
+    const collectionMode =  await getStorageSingleData('ex_mode')||"all";
+    const maxAttempt = collectionMode=="all"?300:30;
     // while(listingEndingDefineSelector().length!=0){
     while(true){
         totalTry++;
@@ -1325,7 +1351,7 @@ async function scrollPage(){
         // }
         document.documentElement.scrollTop+=1000;
         await ex_sleep(1000);
-        if(totalTry>300){
+        if(totalTry>maxAttempt){
             break;
         }
     }
