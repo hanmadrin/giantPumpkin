@@ -1364,6 +1364,8 @@ async function scrollPage(){
             }
         }
         numbers = [...new Set(numbers)];
+        // console.log(`total collected: ${numbers.length}`);
+        showDataOnConsoleDynamic(`total collected: ${numbers.length}`)
         await setStorageSingleData('ex_collected',numbers);
         // COLLECT WHILE SCROLLING END
         await ex_sleep(1000);
