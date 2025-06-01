@@ -1283,6 +1283,7 @@ async function collectDataFromPage(){
                 }
             }
         }
+        numbers = [...new Set(numbers)];
         // items.forEach(function () {
         //     var dealership = $(this).find('a').children('div').children().eq(1).children().eq(3).children().eq(0).children().eq(0).children().eq(0).text().search('Dealership');
         //     if (dealership == -1) {
@@ -1296,7 +1297,7 @@ async function collectDataFromPage(){
         //     }
         // });
         //unique numbers
-        numbers = [...new Set(numbers)];
+        
         console.log(`total collected: ${numbers.length}`);
         // throw new Error('test');
         await setStorageSingleData('ex_collected',numbers);
@@ -1349,8 +1350,24 @@ async function scrollPage(){
         //         await ex_sleep(2000);
         //     }
         // }
-        document.documentElement.scrollTop+=1000;
+        // COLLECT WHILE SCROLLING START
+        const  items = document.querySelectorAll('[href^="/marketplace/item"]'); 
+        let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
+        console.log(`total items: ${items.length}`);
+        for(i=0;i<items.length;i++){
+            const dealerShip = items[i].innerText.search('Dealership');
+            const state = items[i].querySelector('.x1gslohp.xkh6y0r:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
+            if(dealerShip==-1){
+                if(isSpecifiedState(state)){
+                    numbers.push(items[i].getAttribute('href').split('/')[3]);
+                }
+            }
+        }
+        numbers = [...new Set(numbers)];
+        await setStorageSingleData('ex_collected',numbers);
+        // COLLECT WHILE SCROLLING END
         await ex_sleep(1000);
+        document.documentElement.scrollTop+=1000;
         if(totalTry>maxAttempt){
             break;
         }
