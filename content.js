@@ -1999,7 +1999,7 @@ function mapConfigurationMilesButtonSelector(){
 }
 function mapConfigugationMilesSubmitButtonSelector(){
     // a button that confirms the mile choice
-    return $(`.${'x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n x1ypdohk xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x9f619 x3nfvp2 xdt5ytf xl56j7k x1n2onr6 xh8yej3'.split(' ').join('.')}`);}
+    return $(`.${'x1i10hfl xjbqb8w x1ejq31n x18oe1m7 x1sy0etr xstzfhl x972fbf x10w94by x1qhh985 x14e42zd xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s x1i6fsjq xfvfia3 x8e7100 x1a16bkn x10wwi4t x1x7e7qh xgm7xcn x1ynn3ck x1n2onr6 x16tdsg8 x1ja2u2z'.split(' ').join('.')}`);}
 function listingEndingDefineSelector(){return $('.pybr56ya.ihqw7lf3.cbu4d94t.j83agx80.rq0escxv');}
 function temporaryBlockSelector(){
     return $(`.${'gvxzyvdx aeinzg81 t7p7dqev gh25dzvf exr7barw b6ax4al1 gem102v4 ncib64c9 mrvwc6qr sx8pxkcf f597kf1v cpcgwwas bx1hu7np hxfwr5lz rq8durfe luz166fr o48pnaf2 rtxb060y hsphh064'.split(' ').join('.')}`);}
