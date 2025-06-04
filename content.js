@@ -1991,7 +1991,7 @@ function mapConfigurationMainButtonSelector(){
     return $(`.${'x1i10hfl x1qjc9v5 xjbqb8w xjqpnuy xc5r6h4 xqeqjp1 x1phubyo x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 x1ypdohk xdl72j9 x2lah0s xe8uvvx x14z9mp xat24cr x1lziwak x2lwn1j xeuugli xexx8yu xyri2b x18d9i69 x1c1uobl x1n2onr6 x16tdsg8 x1hl2dhg xggy1nq x1ja2u2z x1t137rt x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x1q0g3np x87ps6o x1lku1pv x78zum5 x1a2a7pz x1xmf6yo'.split(' ').join('.')}`);}
 function mapConfigurationMilesMainButtonSelector(){
     // a button on click will open all miles options
-    return $(`.${'xjyslct xjbqb8w x13fuv20 xu3j5b3 x1q0q8m5 x26u7qi x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x78zum5 x1jchvi3 x1fcty0u x132q4wb xdj266r x11i5rnm xat24cr x1mh8g0r x1a2a7pz x9desvi x1pi30zi x1a8lsjc x1n2onr6 x16tdsg8 xh8yej3 x1ja2u2z xzsf02u x1swvt13'.split(' ').join('.')}`)}
+    return $(`.${'xjyslct xjbqb8w x13fuv20 x18b5jzi x1q0q8m5 x1t7ytsu x972fbf x10w94by x1qhh985 x14e42zd x9f619 xzsf02u x78zum5 x1jchvi3 x1fcty0u x132q4wb xdj266r x14z9mp xat24cr x1lziwak x1a2a7pz x1a8lsjc xv54qhq xf7dkkf x9desvi x1n2onr6 x16tdsg8 xh8yej3 x1ja2u2z'.split(' ').join('.')}`)}
 function mapConfigurationMilesButtonSelector(){
     // a button on click will choose a mile from other options
     // x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n xe8uvvx x1hl2dhg xggy1nq x1o1ewxj x3x9cwd x1e5q0jg x13rtm0m x87ps6o x1lku1pv x1a2a7pz x6s0dn4 xjyslct x9f619 x1ypdohk x78zum5 x1q0g3np x2lah0s xnqzcj9 x1gh759c x1i6fsjq xfvfia3 x1344otq x1de53dj x10wwi4t x1x7e7qh x1n2onr6 x16tdsg8 x1ja2u2z
