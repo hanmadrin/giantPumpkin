@@ -1567,8 +1567,8 @@ async function isAreaVerified(){
     return ex_area.verified;
 }
 async function playSound(){
-    var myAudio = new Audio(chrome.runtime.getURL("notify.mp3"));
-    myAudio.play();
+    // var myAudio = new Audio(chrome.runtime.getURL("notify.mp3"));
+    // myAudio.play();
 }
 async function getAreaFromWebStorage(){
     await pageBypassWork('getAreaForCurrentInfo');
