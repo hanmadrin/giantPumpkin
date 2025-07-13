@@ -10,16 +10,13 @@
     "unlimitedStorage",
     "cookies"
   ],
-  "browser_action": {
+  "action": {
     "default_title": "Giant Pumpkin",
     "default_popup": "popup/popup.html",
     "default_icon": "icon.png"
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
