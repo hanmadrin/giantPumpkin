@@ -1267,6 +1267,85 @@ async function dataCollectionProcessCollection(){
         await ex_redirection(facebookCollectionUrls[currentLocationIndex],'Redirection to listing Url to make list');
     }
 }
+function isValidListing(item) {
+        console.log(item)
+        const dealerShip = item.innerText.search('Dealership');
+        if (dealerShip != -1) {
+            console.log("dealership")
+            return false;
+        }
+        const details = item.querySelectorAll("span:not(:has(*)):not(:empty)");
+        if (details.length != 4) {
+            console.log("not 4 line details")
+            return false;
+        }
+        // const [priceText, yearNameText, stateCityText, mileageText] = details.map(elm => elm.innerText);
+        const [priceText, yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
+        const price = priceText.replace('$', '').replace(',', '')
+        // yearNameText = 2012 Land Rover range rover evoque
+        const year = yearNameText.match(/^\d{4}/);
+        const make = yearNameText.replace(/^\d{4}/, '').trim().split(" ")[0];
+        const state = stateCityText.split(',')[1].trim();
+        // 77K miles
+        const mileage = mileageText.match(/\d+/)[0] * 1000;
+
+        const validStates = ['WI', 'IL', 'TN', 'MS', 'AL', 'FL', 'GA', 'SC', 'NC', 'KY', 'VA', 'IN', 'MI', 'OH', 'PA', 'NY', 'ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NJ', 'DE', 'MD', 'WV', 'MN', "IA", "MO", "AR", "TX", "OK", 'KS', 'ND'];
+        const validMakes = [
+            "BUICK",
+            "CHEVROLET",
+            "CHEVY",
+            "CHRYSLER",
+            "FIAT",
+            "FORD",
+            "GMC",
+            "HONDA",
+            "HYUNDAI",
+            "JEEP",
+            "KIA",
+            "LINCOLN",
+            "MAZDA",
+            "MITSUBISHI",
+            "NISSAN",
+            "RAM",
+            "SCION",
+            "SMART",
+            "SUBARU",
+            "TOYOTA",
+            "VOLKSWAGEN"
+        ];
+
+        // 10000-120000 mileage
+        // 5000 - 50000 price
+        // 2016 - 2025 year
+        if (price < 5000 || price > 50000) {
+            console.log("invalid price")
+            return false;
+        }
+        if (year < 2016 || year > 2025) {
+            console.log("invalid year")
+            return false;
+        }
+        if (mileage < 10000 || mileage > 120000) {
+            console.log("invalid mileage")
+            return false;
+        }
+        if (!validMakes.includes(make.toUpperCase())) {
+            console.log("invalid make")
+            return false;
+        }
+        if (!validStates.includes(state)) {
+            console.log("invalid state")
+            return false;
+        }
+
+        // console.log(item)
+        return true;
+    }
+function isSpecifiedState(shortForm) {
+        const shortStates = ['WI', 'IL', 'TN', 'MS', 'AL', 'FL', 'GA', 'SC', 'NC', 'KY', 'VA', 'IN', 'MI', 'OH', 'PA', 'NY', 'ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NJ', 'DE', 'MD', 'WV', 'MN', "IA", "MO", "AR", "TX", "OK", 'KS', 'ND'];
+        const states = ['Wisconsin', 'Illinois', 'Tennessee', 'Mississippi', 'Alabama', 'Florida', 'Georgia', 'South Carolina', 'North Carolina', 'Kentucky', 'Virginia', 'Indiana', 'Michigan', 'Ohio', 'Pennsylvania', 'New York', 'Maine', 'New Hampshire', 'Vermont', 'Massachusetts', 'Rhode Island', 'Connecticut', 'New Jersey', 'Delaware', 'Maryland', 'West Virginia', 'Minnesota', 'Iowa', 'Missouri', 'Arkansas', 'Texas', 'Oklahoma', 'Kansas', 'North Dakota'];
+        return shortStates.includes(shortForm) || states.includes(shortForm);
+}
 async function collectDataFromPage(){
     const facebookCollectionUrls = await getCollectionModeUrls();
     try{
@@ -1275,28 +1354,12 @@ async function collectDataFromPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         console.log(`total items: ${items.length}`);
         for(i=0;i<items.length;i++){
-            const dealerShip = items[i].innerText.search('Dealership');
-            const state = items[i].querySelector('.x1gslohp.xkh6y0r:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
-            if(dealerShip==-1){
-                if(isSpecifiedState(state)){
-                    numbers.push(items[i].getAttribute('href').split('/')[3]);
-                }
+            if(isValidListing(items[i])){
+                numbers.push(items[i].getAttribute('href').split('/')[3]);
             }
         }
         numbers = [...new Set(numbers)];
-        // items.forEach(function () {
-        //     var dealership = $(this).find('a').children('div').children().eq(1).children().eq(3).children().eq(0).children().eq(0).children().eq(0).text().search('Dealership');
-        //     if (dealership == -1) {
-        //         address = $(this).find('a').children('div').children().eq(1).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text().replace(',', '');
-        //         address1 = address.split(' ');
-        //         state = address1[address1.length - 1];
-        //         url = $(this).find('a').attr('href').split('/')[3];
-        //         if(isSpecifiedState(state)) {
-        //             numbers.push(url);
-        //         }
-        //     }
-        // });
-        //unique numbers
+
         
         console.log(`total collected: ${numbers.length}`);
         // throw new Error('test');
@@ -1324,11 +1387,7 @@ async function collectDataFromPage(){
     }
     
 }
-async function isSpecifiedState(shortForm){
-    var shortStates = ['WI','IL','TN','MS','AL','FL','GA','SC','NC','KY','VA','IN','MI','OH','PA','NY','ME','NH','VT','MA','RI','CT','NJ','DE','MD','WV','MN',"IA","MO","AR","TX","OK",'KS','ND'];
-    var states = ['Wisconsin','Illinois','Tennessee','Mississippi','Alabama','Florida','Georgia','South Carolina','North Carolina','Kentucky','Virginia','Indiana','Michigan','Ohio','Pennsylvania','New York','Maine','New Hampshire','Vermont','Massachusetts','Rhode Island','Connecticut','New Jersey','Delaware','Maryland','West Virginia','Minnesota','Iowa','Missouri','Arkansas','Texas','Oklahoma','Kansas','North Dakota'];
-    return (states.indexOf(shortForm)==-1)?false:true;
-}
+
 async function scrollPage(){
 
     await ex_sleep(5000);
@@ -1355,12 +1414,8 @@ async function scrollPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         console.log(`total items: ${items.length}`);
         for(i=0;i<items.length;i++){
-            const dealerShip = items[i].innerText.search('Dealership');
-            const state = items[i].querySelector('.x1gslohp.xkh6y0r:nth-child(3)').innerText.replace(',','').split(' ').slice(-1)[0];
-            if(dealerShip==-1){
-                if(isSpecifiedState(state)){
-                    numbers.push(items[i].getAttribute('href').split('/')[3]);
-                }
+            if(isValidListing(items[i])){
+                numbers.push(items[i].getAttribute('href').split('/')[3]);
             }
         }
         numbers = [...new Set(numbers)];
