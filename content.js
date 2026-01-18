@@ -1274,7 +1274,7 @@ async function dataCollectionProcessCollection(){
     }
 }
 function isValidListing(item,index) {
-        console.log(index,item)
+        // console.log(index,item)
         const dealerShip = item.innerText.search('Dealership');
         if (dealerShip != -1) {
             console.log("dealership")
