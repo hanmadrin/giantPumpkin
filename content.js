@@ -1463,6 +1463,14 @@ async function areaVerification(){
         await setStorageSingleData('ex_area',ex_area);
         ex_redirection('https://www.facebook.com/','to home page.. just verified area');
     }else{
+        if(radiusOnPage != radiusSupposedTo){
+            console.log(`radius mismatch: ${radiusOnPage} != ${radiusSupposedTo}`);
+            await showHTMLOnContentConsole('radius mismatch'); 
+        }
+        if(nameOnPage != nameSupposedTo){
+            console.log(`name mismatch: ${nameOnPage} != ${nameSupposedTo}`);
+            await showHTMLOnContentConsole('name mismatch');
+        }
         await showHTMLOnContentConsole('<input value="'+ex_area.name+'">');
         await showHTMLOnContentConsole('<input value="'+ex_area.radius+'">');
         await showHTMLOnContentConsole('set the name and miles...then refresh');
