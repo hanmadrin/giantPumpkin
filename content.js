@@ -1455,7 +1455,7 @@ async function areaVerification(){
     var ex_area = await getStorageSingleData('ex_area');
     var nameOnPage = mapConfigurationMainButtonSelector().text().split('·')[0].trim();
     var nameSupposedTo = ex_area.name;
-    var radiusOnPage = mapConfigurationMainButtonSelector().text().split('·')[1].trim();
+    var radiusOnPage = mapConfigurationMainButtonSelector().text().split('·')[1].trim().match(/Within \d+ mi/)[0];
     var radiusSupposedTo = 'Within '+ex_area.radius+' mi';
     if(radiusOnPage == radiusSupposedTo && nameOnPage == nameSupposedTo)
     {
