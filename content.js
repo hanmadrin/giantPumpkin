@@ -1406,7 +1406,7 @@ async function scrollPage(){
     let totalTry = 0;
 
     const collectionMode =  await getStorageSingleData('ex_mode')||"all";
-    const maxAttempt = collectionMode=="all"?300:collectionMode=="byType"?100:30;
+    const maxAttempt = collectionMode=="all"?300:collectionMode=="byType"?150:30;
     // while(listingEndingDefineSelector().length!=0){
     while(true){
         totalTry++;
