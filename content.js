@@ -1267,8 +1267,8 @@ async function dataCollectionProcessCollection(){
         await ex_redirection(facebookCollectionUrls[currentLocationIndex],'Redirection to listing Url to make list');
     }
 }
-function isValidListing(item) {
-        console.log(item)
+function isValidListing(item,index) {
+        console.log(index,item)
         const dealerShip = item.innerText.search('Dealership');
         if (dealerShip != -1) {
             console.log("dealership")
@@ -1354,7 +1354,7 @@ async function collectDataFromPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         console.log(`total items: ${items.length}`);
         for(i=0;i<items.length;i++){
-            if(isValidListing(items[i])){
+            if(isValidListing(items[i],i)){
                 numbers.push(items[i].getAttribute('href').split('/')[3]);
             }
         }
@@ -1414,7 +1414,7 @@ async function scrollPage(){
         let numbers = (await getStorageSingleData('ex_collected'))==null?[]:await getStorageSingleData('ex_collected');
         console.log(`total items: ${items.length}`);
         for(i=0;i<items.length;i++){
-            if(isValidListing(items[i])){
+            if(isValidListing(items[i],i)){
                 numbers.push(items[i].getAttribute('href').split('/')[3]);
             }
         }
