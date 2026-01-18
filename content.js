@@ -335,6 +335,12 @@ const facebookCollectionUrlsMode = {
     all: [
         "https://www.facebook.com/marketplace/category/vehicles?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
     ],
+    byType: [
+        "https://www.facebook.com/marketplace/category/cars?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
+        "https://www.facebook.com/marketplace/category/suvs?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true",
+        "https://www.facebook.com/marketplace/category/trucks?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true"
+
+    ],
     byModel: [
         // buick
         "https://www.facebook.com/marketplace/category/vehicles/?minPrice=5000&maxPrice=50000&maxMileage=120000&maxYear=2025&minMileage=10000&minYear=2016&sortBy=creation_time_descend&exact=true&make=436791410393181",
@@ -1275,12 +1281,17 @@ function isValidListing(item,index) {
             return false;
         }
         const details = item.querySelectorAll("span:not(:has(*)):not(:empty)");
-        if (details.length != 4) {
+        if (details.length >= 4) {
             console.log("not 4 line details")
             return false;
         }
         // const [priceText, yearNameText, stateCityText, mileageText] = details.map(elm => elm.innerText);
-        const [priceText, yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
+        let priceText, yearNameText, stateCityText, mileageText;
+        if(details.length==4){
+            [priceText, yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
+        }else{
+            [priceText, ,yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
+        }
         const price = priceText.replace('$', '').replace(',', '')
         // yearNameText = 2012 Land Rover range rover evoque
         const year = yearNameText.match(/^\d{4}/);
