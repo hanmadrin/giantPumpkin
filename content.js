@@ -1281,7 +1281,7 @@ function isValidListing(item,index) {
             return false;
         }
         const details = item.querySelectorAll("span:not(:has(*)):not(:empty)");
-        if (details.length >= 4) {
+        if (details.length < 4) {
             console.log("not 4 line details")
             return false;
         }
