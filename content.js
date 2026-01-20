@@ -1292,7 +1292,7 @@ function isValidListing(item,index) {
         const make = yearNameText.replace(/^\d{4}/, '').trim().split(" ")[0] || "";
 
         // 3. City/State: Ends with 2 uppercase letters (e.g., NJ)
-        const stateCityText = spans.find(s => /[A-Z]{2}$/.test(s.innerText.trim()))?.innerText || "";
+        const stateCityText = spans.find(s => /,\s[A-Z]{2}$/.test(s.innerText.trim()))?.innerText || "";
         const state = stateCityText.split(',')[1]?.trim() || "";
 
         // 4. Mileage: Pattern "K miles"
@@ -1349,7 +1349,7 @@ function isValidListing(item,index) {
             console.log("invalid state")
             // start breakpoint
             console.log(stateCityText)
-            debugger
+            // debugger
 
             return false;
         }
