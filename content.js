@@ -1347,6 +1347,10 @@ function isValidListing(item,index) {
         }
         if (!validStates.includes(state)) {
             console.log("invalid state")
+            // start breakpoint
+            console.log(stateCityText)
+            debugger
+
             return false;
         }
 
