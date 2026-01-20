@@ -1295,6 +1295,7 @@ function isValidListing(item,index) {
             showHTMLOnContentConsole(`invalid details length: ${details.length} at index ${index}`);
             throw new Error(`invalid details length: ${details.length} at index ${index}`);
         }
+        console.log(`priceText: ${priceText}, yearNameText: ${yearNameText}, stateCityText: ${stateCityText}, mileageText: ${mileageText}`);
         const price = priceText.replace('$', '').replace(',', '')
         // yearNameText = 2012 Land Rover range rover evoque
         const year = yearNameText.match(/^\d{4}/);
