@@ -1280,29 +1280,26 @@ function isValidListing(item,index) {
             console.log("dealership")
             return false;
         }
-        const details = item.querySelectorAll("span:not(:has(*)):not(:empty)");
-        if (details.length < 4) {
-            console.log("not 4 line details")
-            return false;
-        }
-        // const [priceText, yearNameText, stateCityText, mileageText] = details.map(elm => elm.innerText);
-        let priceText, yearNameText, stateCityText, mileageText;
-        if(details.length==4){
-            [priceText, yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
-        }else if(details.length==5){
-            [priceText, ,yearNameText, stateCityText, mileageText] = Array.from(details).map(elm => elm.innerText);
-        }else{
-            showHTMLOnContentConsole(`invalid details length: ${details.length} at index ${index}`);
-            throw new Error(`invalid details length: ${details.length} at index ${index}`);
-        }
-        console.log(`priceText: ${priceText}, yearNameText: ${yearNameText}, stateCityText: ${stateCityText}, mileageText: ${mileageText}`);
-        const price = priceText.replace('$', '').replace(',', '')
-        // yearNameText = 2012 Land Rover range rover evoque
-        const year = yearNameText.match(/^\d{4}/);
-        const make = yearNameText.replace(/^\d{4}/, '').trim().split(" ")[0];
-        const state = stateCityText.split(',')[1].trim();
-        // 77K miles
-        const mileage = mileageText.match(/\d+/)[0] * 1000;
+        const spans = Array.from(item.querySelectorAll("span:not(:has(*)):not(:empty)"));
+
+        // 1. Price: Starts with $
+        const pMatch = spans.find(s => s.innerText.includes('$'))?.innerText || "0";
+        const price = pMatch.replace(/[$,]/g, '');
+
+        // 2. Year/Vehicle: Starts with 4 digits
+        const yearNameText = spans.find(s => /^\d{4}/.test(s.innerText))?.innerText || "";
+        const year = yearNameText.match(/^\d{4}/)?.[0] || 0;
+        const make = yearNameText.replace(/^\d{4}/, '').trim().split(" ")[0] || "";
+
+        // 3. City/State: Ends with 2 uppercase letters (e.g., NJ)
+        const stateCityText = spans.find(s => /[A-Z]{2}$/.test(s.innerText.trim()))?.innerText || "";
+        const state = stateCityText.split(',')[1]?.trim() || "";
+
+        // 4. Mileage: Pattern "K miles"
+        const mileageText = spans.find(s => /\d+K miles/i.test(s.innerText))?.innerText || "0";
+        const mileage = (mileageText.match(/\d+/)?.[0] || 0) * 1000;
+
+        console.log({ price, year, make, state, mileage });
 
         const validStates = ['WI', 'IL', 'TN', 'MS', 'AL', 'FL', 'GA', 'SC', 'NC', 'KY', 'VA', 'IN', 'MI', 'OH', 'PA', 'NY', 'ME', 'NH', 'VT', 'MA', 'RI', 'CT', 'NJ', 'DE', 'MD', 'WV', 'MN', "IA", "MO", "AR", "TX", "OK", 'KS', 'ND'];
         const validMakes = [
