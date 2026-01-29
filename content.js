@@ -1439,10 +1439,7 @@ async function scrollPage(){
         showDataOnConsoleDynamic(`total collected: ${numbers.length}`)
         await setStorageSingleData('ex_collected',numbers);
         // COLLECT WHILE SCROLLING END
-        if(collectionMode=="byType"){
-            await ex_sleep(60000);
-
-        }
+        
         await ex_sleep(1000);
         document.documentElement.scrollTop+=1000;
         if(totalTry>maxAttempt){
@@ -1450,6 +1447,11 @@ async function scrollPage(){
         }
     }
     console.log('scrolling done');
+    if(collectionMode=="byType"){
+            console.log('extra wait for by type mode');
+            await ex_sleep(60000);
+
+        }
 }
 async function isCollectingPageUrl(){
     const facebookCollectionUrls = await getCollectionModeUrls();
