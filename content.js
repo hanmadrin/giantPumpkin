@@ -1411,7 +1411,7 @@ async function scrollPage(){
     let totalTry = 0;
 
     const collectionMode =  await getStorageSingleData('ex_mode')||"all";
-    const maxAttempt = collectionMode=="all"?300:collectionMode=="byType"?150:30;
+    const maxAttempt = collectionMode=="all"?300:collectionMode=="byType"?30:30;
     // while(listingEndingDefineSelector().length!=0){
     while(true){
         totalTry++;
@@ -1439,6 +1439,10 @@ async function scrollPage(){
         showDataOnConsoleDynamic(`total collected: ${numbers.length}`)
         await setStorageSingleData('ex_collected',numbers);
         // COLLECT WHILE SCROLLING END
+        if(collectionMode=="byType"){
+            await ex_sleep(60000);
+
+        }
         await ex_sleep(1000);
         document.documentElement.scrollTop+=1000;
         if(totalTry>maxAttempt){
